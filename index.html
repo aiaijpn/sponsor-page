@@ -52,6 +52,7 @@
       border-radius: 18px;
       box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
       overflow: hidden;
+      margin-bottom: 36px;
     }
 
     .panel-header {
@@ -78,9 +79,38 @@
       border-bottom: none;
     }
 
+    .gallery {
+      display: grid;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .gallery-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+      padding: 16px;
+    }
+
+    .gallery-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .gallery-card p {
+      margin: 12px 4px 4px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
     .footer {
       text-align: center;
-      margin-top: 20px;
+      margin-top: 28px;
       color: var(--muted);
       font-size: 14px;
     }
@@ -105,6 +135,23 @@
         <li>－－－－－－－－－－－－－</li>
         <li>AIインテグレーションの高村</li>
       </ul>
+    </section>
+
+    <section class="gallery">
+      <div class="gallery-card">
+        <img src="img1.png" alt="栄一AIツール紹介画像1" />
+        <p>栄一AIツール紹介</p>
+      </div>
+
+      <div class="gallery-card">
+        <img src="img2.png" alt="三味線ファンクラブ向けAIツール紹介画像" />
+        <p>三味線ファンクラブ向け活用イメージ</p>
+      </div>
+
+      <div class="gallery-card">
+        <img src="img3.png" alt="女子会向けAIツール紹介画像" />
+        <p>女子会向け活用イメージ</p>
+      </div>
     </section>
 
     <div class="footer">Copyright © 協賛各社一覧</div>
