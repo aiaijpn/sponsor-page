@@ -188,14 +188,10 @@
   </main>
 
   <script>
-    // ここを書き換える
-    const SHEET_ID = "1sjRhPppi-6KlfGO8vjxGjJIf2LgiD_y7rqugbEjtN2k";
-    const GID = "1633997567";
-
     // Google Sheets を「ウェブに公開」した前提で CSV を読む
-    const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID}`;
-
-    function parseCsvLine(line) {
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFwWq4rfEsKrx-kYjiZ5WDpu6ueiBDmDmbPwMQvgQV2mWF2HYbNlVtAwS3WLWH0lfHWs0tC-nm3VeC/pub?output=csv";
+  
+      function parseCsvLine(line) {
       const result = [];
       let current = "";
       let inQuotes = false;
