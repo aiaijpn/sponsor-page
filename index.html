@@ -2,8 +2,9 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>協賛各社一覧</title>
+
   <style>
     :root {
       --bg: #f7f9fc;
@@ -14,69 +15,67 @@
       --accent: #1d4ed8;
     }
 
-    * { box-sizing: border-box; }
-
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
-      background: linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Yu Gothic", sans-serif;
+      background: var(--bg);
       color: var(--text);
     }
 
     .wrap {
       max-width: 860px;
       margin: 0 auto;
-      padding: 48px 20px 64px;
+      padding: 48px 20px;
     }
 
-    .hero {
+    h1 {
       text-align: center;
-      margin-bottom: 32px;
+      margin-bottom: 10px;
     }
 
-    .hero h1 {
-      margin: 0 0 10px;
-      font-size: clamp(28px, 4vw, 40px);
-      line-height: 1.2;
-    }
-
-    .hero p {
-      margin: 0;
+    p.sub {
+      text-align: center;
       color: var(--muted);
-      font-size: 16px;
+      margin-bottom: 30px;
     }
 
     .panel {
       background: var(--card);
       border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+      border-radius: 12px;
       overflow: hidden;
-      margin-bottom: 36px;
     }
 
     .panel-header {
-      padding: 18px 22px;
-      border-bottom: 1px solid var(--line);
-      background: #f8fbff;
-      font-weight: 700;
-      color: var(--accent);
+      padding: 16px;
+      background: #f1f5f9;
+      font-weight: bold;
     }
 
     ul.company-list {
       list-style: none;
       margin: 0;
-      padding: 8px 0;
+      padding: 0;
     }
 
     .company-list li {
-      padding: 18px 22px;
       border-bottom: 1px solid #eef2f7;
-      font-size: 18px;
     }
 
     .company-list li:last-child {
       border-bottom: none;
+    }
+
+    .company-link {
+      display: block;
+      padding: 18px 22px;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.2s;
+    }
+
+    .company-link:hover {
+      background: #f8fbff;
     }
 
     .company-name {
@@ -87,136 +86,109 @@
     .company-pitch {
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
-    .company-links a {
+    .company-button {
       display: inline-block;
-      margin-right: 10px;
-      font-size: 14px;
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .company-links a:hover {
-      text-decoration: underline;
-    }
-
-    .gallery {
-      display: grid;
-      gap: 24px;
-      margin-top: 20px;
-    }
-
-    .gallery-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
-      overflow: hidden;
-      padding: 16px;
-    }
-
-    .gallery-card img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
-    }
-
-    .gallery-card p {
-      margin: 12px 4px 4px;
-      color: var(--muted);
-      font-size: 14px;
-      text-align: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
     }
 
     .footer {
       text-align: center;
-      margin-top: 28px;
+      margin-top: 30px;
+      font-size: 13px;
       color: var(--muted);
-      font-size: 14px;
     }
   </style>
 </head>
+
 <body>
-  <main class="wrap">
-    <section class="hero">
-      <h1>協賛各社一覧</h1>
-      <p>ご協力いただいている各社・各団体をご紹介します。</p>
-    </section>
 
-    <section class="panel">
-      <div class="panel-header">協賛各社</div>
-      <ul class="company-list">
+<div class="wrap">
+  <h1>協賛各社一覧</h1>
+  <p class="sub">ご協力いただいている各社をご紹介します。</p>
 
-        <li>
+  <div class="panel">
+    <div class="panel-header">協賛各社</div>
+
+    <ul class="company-list">
+
+      <li>
+        <a href="https://example.com/shamisen-club" target="_blank" class="company-link">
           <div class="company-name">三味線ファンクラブ</div>
           <div class="company-pitch">三味線や和の文化に触れたい方へ。</div>
-        </li>
+          <span class="company-button">詳しく見る</span>
+        </a>
+      </li>
 
-        <li>
+      <li>
+        <a href="https://example.com/ikeda-legal" target="_blank" class="company-link">
           <div class="company-name">池田法律相談室</div>
           <div class="company-pitch">法律や相続のご相談に対応しています。</div>
-        </li>
+          <span class="company-button">詳しく見る</span>
+        </a>
+      </li>
 
-        <li>
+      <li>
+        <a href="https://example.com/kanai-suits" target="_blank" class="company-link">
           <div class="company-name">オーダースーツの金井</div>
-          <div class="company-pitch">装いを整えたい方へ、オーダースーツのご相談を承ります。</div>
-        </li>
+          <div class="company-pitch">装いを整えたい方へ。</div>
+          <span class="company-button">詳しく見る</span>
+        </a>
+      </li>
 
-        <li>
+      <li>
+        <a href="https://example.com/nishikawa" target="_blank" class="company-link">
           <div class="company-name">西川ヘレン美容医療院</div>
           <div class="company-pitch">美容医療のご相談はこちら。</div>
-        </li>
+          <span class="company-button">詳しく見る</span>
+        </a>
+      </li>
 
-        <li>
+      <li>
+        <a href="https://example.com/ogata" target="_blank" class="company-link">
           <div class="company-name">相続対策なら尾形</div>
           <div class="company-pitch">相続対策を検討したい方向けです。</div>
-        </li>
+          <span class="company-button">詳しく見る</span>
+        </a>
+      </li>
 
-        <li>
+      <li>
+        <a href="https://example.com/wine" target="_blank" class="company-link">
           <div class="company-name">ザ・ワインベース銀座</div>
           <div class="company-pitch">ワインを楽しみたい方へ。</div>
-        </li>
+          <span class="company-button">詳しく見る</span>
+        </a>
+      </li>
 
-        <li>
-          <div class="company-name">三味線養老矢吹</div>
-          <div class="company-pitch">三味線や和の文化に触れたい方へ。</div>
-        </li>
+      <li>
+        <a href="https://example.com/yabuki" target="_blank" class="company-link">
+          <div class="company-name">三味線奏者矢吹</div>
+          <div class="company-pitch">三味線の迫力を感じたい方なら。</div>
+          <span class="company-button">詳しく見る</span>
+        </a>
+      </li>
 
-        <li>
+      <li>
+        <a href="https://example.com/takamura" target="_blank" class="company-link">
           <div class="company-name">AIインテグレーションの高村</div>
           <div class="company-pitch">AI活用や業務効率化のご相談はこちら。</div>
-        </li>
+          <span class="company-button">詳しく見る</span>
+        </a>
+      </li>
 
-      </ul>
-    </section>
+    </ul>
+  </div>
 
-    <section class="gallery">
-      <div class="gallery-card">
-        <img src="shamisen.png" alt="三味線ファンクラブ画像1" />
-        <p>三味線ファンクラブ活用イメージ</p>
-      </div>
+  <div class="footer">
+    © 協賛各社一覧
+  </div>
+</div>
 
-      <div class="gallery-card">
-        <img src="igyoushu.png" alt="異業種交流会向け紹介画像" />
-        <p>異業種交流会向け活用イメージ</p>
-      </div>
-
-      <div class="gallery-card">
-        <img src="inshoku.png" alt="銀座飲食グループ紹介画像" />
-        <p>銀座飲食グループ向け活用イメージ</p>
-      </div>
-
-      <div class="gallery-card">
-        <img src="josikai.png" alt="女子会向けAIツール紹介画像" />
-        <p>女子会向け活用イメージ</p>
-      </div>
-    </section>
-
-    <div class="footer">Copyright © 協賛各社一覧</div>
-  </main>
 </body>
 </html>
