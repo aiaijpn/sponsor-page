@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>協賛各社一覧</title>
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --line: #dbe3ee;
+      --accent: #1d4ed8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background: linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 48px 20px 64px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.2;
+    }
+
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+      margin-bottom: 36px;
+    }
+
+    .panel-header {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+      background: #f8fbff;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    ul.company-list {
+      list-style: none;
+      margin: 0;
+      padding: 8px 0;
+    }
+
+    .company-list li {
+      padding: 18px 22px;
+      border-bottom: 1px solid #eef2f7;
+      font-size: 18px;
+    }
+
+    .company-list li:last-child {
+      border-bottom: none;
+    }
+
+    .company-name {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .company-pitch {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .company-links a {
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 14px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .company-links a:hover {
+      text-decoration: underline;
+    }
+
+    .gallery {
+      display: grid;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .gallery-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+      overflow: hidden;
+      padding: 16px;
+    }
+
+    .gallery-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .gallery-card p {
+      margin: 12px 4px 4px;
+      color: var(--muted);
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <h1>協賛各社一覧</h1>
+      <p>ご協力いただいている各社・各団体をご紹介します。</p>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">協賛各社</div>
+      <ul class="company-list">
+        {{COMPANY_LIST}}
+      </ul>
+    </section>
+
+    <section class="gallery">
+      <div class="gallery-card">
+        <img src="shamisen.png" alt="三味線ファンクラブ画像1" />
+        <p>三味線ファンクラブ活用イメージ</p>
+      </div>
+
+      <div class="gallery-card">
+        <img src="igyoushu.png" alt="異業種交流会向け紹介画像" />
+        <p>異業種交流会向け活用イメージ</p>
+      </div>
+
+      <div class="gallery-card">
+        <img src="inshoku.png" alt="銀座飲食グループ紹介画像" />
+        <p>銀座飲食グループ向け活用イメージ</p>
+      </div>
+
+      <div class="gallery-card">
+        <img src="josikai.png" alt="女子会向けAIツール紹介画像" />
+        <p>女子会向け活用イメージ</p>
+      </div>
+    </section>
+
+    <div class="footer">Copyright © 協賛各社一覧</div>
+  </main>
+</body>
+</html>
