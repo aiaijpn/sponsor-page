@@ -79,6 +79,37 @@
       border-bottom: none;
     }
 
+    .company-name {
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .company-pitch {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .company-links a {
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 14px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .company-links a:hover {
+      text-decoration: underline;
+    }
+
+    .loading,
+    .error {
+      padding: 22px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
     .gallery {
       display: grid;
       gap: 24px;
@@ -125,18 +156,12 @@
 
     <section class="panel">
       <div class="panel-header">協賛各社</div>
-      <ul class="company-list">
-        <li>三味線ファンクラブ　矢吹</li>
-        <li>池田法律相談室</li>
-        <li>オーダースーツの金井</li>
-        <li>西川ヘレン美容医療院</li>
-        <li>相続対策なら尾形</li>
-        <li>ザ・ワインベース銀座</li>
-        <li>－－－－－－－－－－－－－</li>
-        <li>AIインテグレーションの高村</li>
+      <ul id="company-list" class="company-list">
+        <li class="loading">読み込み中...</li>
       </ul>
     </section>
 
+    <!-- ここは固定で残す -->
     <section class="gallery">
       <div class="gallery-card">
         <img src="shamisen.png" alt="三味線ファンクラブ画像1" />
@@ -151,16 +176,150 @@
       <div class="gallery-card">
         <img src="inshoku.png" alt="銀座飲食グループ紹介画像" />
         <p>銀座飲食グループ向け活用イメージ</p>
-        
       </div>
-        <div class="gallery-card">
+
+      <div class="gallery-card">
         <img src="josikai.png" alt="女子会向けAIツール紹介画像" />
         <p>女子会向け活用イメージ</p>
       </div>
-      
     </section>
 
     <div class="footer">Copyright © 協賛各社一覧</div>
   </main>
+
+  <script>
+    // ここを書き換える
+    const SHEET_ID = "1sjRhPppi-6KlfGO8vjxGjJIf2LgiD_y7rqugbEjtN2k";
+    const GID = "1633997567";
+
+    // Google Sheets を「ウェブに公開」した前提で CSV を読む
+    const CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID}`;
+
+    function parseCsvLine(line) {
+      const result = [];
+      let current = "";
+      let inQuotes = false;
+
+      for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        const next = line[i + 1];
+
+        if (char === '"') {
+          if (inQuotes && next === '"') {
+            current += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (char === "," && !inQuotes) {
+          result.push(current);
+          current = "";
+        } else {
+          current += char;
+        }
+      }
+
+      result.push(current);
+      return result;
+    }
+
+    function parseCsv(text) {
+      const lines = text
+        .replace(/\r\n/g, "\n")
+        .replace(/\r/g, "\n")
+        .split("\n")
+        .filter(line => line.trim() !== "");
+
+      if (lines.length === 0) return [];
+
+      const headers = parseCsvLine(lines[0]).map(h => h.trim());
+
+      return lines.slice(1).map(line => {
+        const values = parseCsvLine(line);
+        const row = {};
+
+        headers.forEach((header, index) => {
+          row[header] = (values[index] || "").trim();
+        });
+
+        return row;
+      });
+    }
+
+    function isTrue(value) {
+      return String(value || "").trim().toUpperCase() === "TRUE";
+    }
+
+    function escapeHtml(text) {
+      return String(text || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function buildLinks(company) {
+      const links = [];
+
+      if (company.site_url) {
+        links.push(`<a href="${escapeHtml(company.site_url)}" target="_blank" rel="noopener noreferrer">サイト</a>`);
+      }
+
+      if (company.line_url) {
+        links.push(`<a href="${escapeHtml(company.line_url)}" target="_blank" rel="noopener noreferrer">LINE</a>`);
+      }
+
+      if (company.map_url) {
+        links.push(`<a href="${escapeHtml(company.map_url)}" target="_blank" rel="noopener noreferrer">地図</a>`);
+      }
+
+      return links.length > 0
+        ? `<div class="company-links">${links.join("")}</div>`
+        : "";
+    }
+
+    function renderCompanies(companies) {
+      const list = document.getElementById("company-list");
+
+      const visibleCompanies = companies
+        .filter(company => isTrue(company.show_in_html))
+        .sort((a, b) => Number(a.sort_order || 9999) - Number(b.sort_order || 9999));
+
+      if (visibleCompanies.length === 0) {
+        list.innerHTML = `<li class="error">表示対象の企業がありません。</li>`;
+        return;
+      }
+
+      list.innerHTML = visibleCompanies.map(company => `
+        <li>
+          <div class="company-name">${escapeHtml(company.name)}</div>
+          ${company.short_pitch ? `<div class="company-pitch">${escapeHtml(company.short_pitch)}</div>` : ""}
+          ${buildLinks(company)}
+        </li>
+      `).join("");
+    }
+
+    async function loadCompanies() {
+      const list = document.getElementById("company-list");
+
+      try {
+        const response = await fetch(CSV_URL, { cache: "no-store" });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        const csvText = await response.text();
+        const companies = parseCsv(csvText);
+        renderCompanies(companies);
+      } catch (error) {
+        console.error("company_master load error:", error);
+        list.innerHTML = `<li class="error">企業一覧の読み込みに失敗しました。</li>`;
+      }
+    }
+
+    loadCompanies();
+  </script>
 </body>
 </html>
