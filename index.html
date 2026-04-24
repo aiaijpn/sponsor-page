@@ -317,6 +317,11 @@
       border-color: var(--main);
     }
 
+    .modal-btn.primary:disabled {
+      opacity: 0.7;
+      cursor: wait;
+    }
+
     .modal-btn.sub {
       background: #f9fafb;
     }
@@ -636,6 +641,9 @@
       modalCommandText.textContent = currentFixedCommand;
       copyStatus.style.display = "none";
 
+      copyAndOpenLineButton.disabled = false;
+      copyAndOpenLineButton.textContent = "コピーしてLINEを開く";
+
       aiModalOverlay.classList.add("open");
     }
 
@@ -646,6 +654,19 @@
     async function copyAndOpenLine() {
       if (!currentFixedCommand) return;
 
+      const WAIT_MS = 900;
+
+      let lineWindow = null;
+
+      try {
+        lineWindow = window.open("about:blank", "_blank");
+      } catch (error) {
+        lineWindow = null;
+      }
+
+      copyAndOpenLineButton.disabled = true;
+      copyAndOpenLineButton.textContent = "コピー中...";
+
       try {
         await navigator.clipboard.writeText(currentFixedCommand);
         copyStatus.textContent = "コピーしました。LINEを開きます。";
@@ -655,9 +676,18 @@
         copyStatus.style.display = "block";
       }
 
+      copyAndOpenLineButton.textContent = "LINEを開いています...";
+
       setTimeout(() => {
-        window.open(LINE_URL, "_blank", "noopener");
-      }, 300);
+        if (lineWindow) {
+          lineWindow.location.href = LINE_URL;
+        } else {
+          window.location.href = LINE_URL;
+        }
+
+        copyAndOpenLineButton.disabled = false;
+        copyAndOpenLineButton.textContent = "コピーしてLINEを開く";
+      }, WAIT_MS);
     }
 
     function renderFeatured() {
