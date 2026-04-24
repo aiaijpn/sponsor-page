@@ -2,189 +2,538 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>協賛各社一覧</title>
 
   <style>
     :root {
-      --bg: #f7f9fc;
+      --bg: #f6f7f9;
       --card: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --line: #dbe3ee;
-      --accent: #1d4ed8;
+      --text: #222222;
+      --muted: #666666;
+      --line: #e5e7eb;
+      --main: #1f6feb;
+      --main-soft: #e8f1ff;
+      --shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Yu Gothic", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: var(--bg);
       color: var(--text);
+      line-height: 1.6;
     }
 
-    .wrap {
-      max-width: 860px;
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 16px 12px;
+    }
+
+    .header-inner {
+      max-width: 880px;
       margin: 0 auto;
-      padding: 48px 20px;
     }
 
     h1 {
-      text-align: center;
-      margin-bottom: 10px;
+      font-size: 22px;
+      margin: 0 0 4px;
+      letter-spacing: 0.02em;
     }
 
-    .sub {
-      text-align: center;
+    .lead {
+      font-size: 13px;
       color: var(--muted);
-      margin-bottom: 30px;
-    }
-
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .panel-header {
-      padding: 16px;
-      background: #f1f5f9;
-      font-weight: bold;
-    }
-
-    ul.company-list {
-      list-style: none;
       margin: 0;
-      padding: 0;
     }
 
-    .company-list li {
-      border-bottom: 1px solid #eef2f7;
+    main {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 16px;
     }
 
-    .company-link {
-      display: block;
-      padding: 18px 22px;
-      text-decoration: none;
-      color: inherit;
-      transition: background 0.2s;
+    .search-box {
+      margin: 16px 0 12px;
     }
 
-    .company-link:hover {
-      background: #f8fbff;
+    .search-box input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-size: 16px;
+      outline: none;
+      background: #fff;
+    }
+
+    .search-box input:focus {
+      border-color: var(--main);
+      box-shadow: 0 0 0 3px var(--main-soft);
+    }
+
+    .category-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 0 12px;
+      scrollbar-width: none;
+    }
+
+    .category-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .category-btn {
+      flex: 0 0 auto;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 14px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .category-btn.active {
+      background: var(--main);
+      color: #fff;
+      border-color: var(--main);
+      font-weight: 700;
+    }
+
+    .section-title {
+      margin: 22px 0 10px;
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .company-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .company-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+    }
+
+    .company-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: flex-start;
     }
 
     .company-name {
-      font-weight: 700;
-      margin-bottom: 6px;
+      font-size: 18px;
+      font-weight: 800;
+      margin: 0;
     }
 
-    .company-pitch {
-      color: var(--muted);
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    .company-button {
-      display: inline-block;
-      padding: 6px 12px;
+    .rank-badge {
+      flex: 0 0 auto;
+      font-size: 11px;
+      padding: 4px 8px;
       border-radius: 999px;
-      background: var(--accent);
-      color: #fff;
-      font-size: 12px;
+      background: #fff7df;
+      color: #8a5a00;
+      font-weight: 700;
     }
 
-    .footer {
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 8px 0 10px;
+    }
+
+    .tag {
+      font-size: 12px;
+      background: var(--main-soft);
+      color: #174ea6;
+      border-radius: 999px;
+      padding: 3px 8px;
+    }
+
+    .pitch {
+      font-size: 14px;
+      margin: 0 0 12px;
+      color: #333;
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .action-btn {
+      flex: 1;
       text-align: center;
-      margin-top: 30px;
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 10px 8px;
+      font-size: 14px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: #fff;
+    }
+
+    .action-btn.primary {
+      background: var(--main);
+      color: #fff;
+      border-color: var(--main);
+    }
+
+    details {
+      margin-top: 10px;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+
+    summary {
+      cursor: pointer;
       font-size: 13px;
       color: var(--muted);
+      font-weight: 700;
+    }
+
+    .detail-text {
+      font-size: 13px;
+      color: var(--muted);
+      margin: 8px 0 0;
+    }
+
+    .empty {
+      display: none;
+      text-align: center;
+      color: var(--muted);
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 24px 12px;
+      margin-top: 12px;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12px;
+      padding: 28px 12px;
+    }
+
+    @media (min-width: 720px) {
+      .company-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      h1 {
+        font-size: 28px;
+      }
     }
   </style>
 </head>
 
 <body>
+  <header>
+    <div class="header-inner">
+      <h1>協賛各社一覧</h1>
+      <p class="lead">会社名・業種・キーワードから協賛企業を探せます。</p>
+    </div>
+  </header>
 
-<div class="wrap">
-  <h1>協賛各社一覧</h1>
-  <p class="sub">ご協力いただいている各社をご紹介します。</p>
+  <main>
+    <div class="search-box">
+      <input
+        id="searchInput"
+        type="search"
+        placeholder="会社名・業種・地域・キーワードで検索"
+        autocomplete="off"
+      />
+    </div>
 
-  <div class="panel">
-    <div class="panel-header">協賛各社</div>
+    <div class="category-scroll" id="categoryButtons">
+      <button class="category-btn active" data-category="all">すべて</button>
+      <button class="category-btn" data-category="shamisen">三味線</button>
+      <button class="category-btn" data-category="legal">法律</button>
+      <button class="category-btn" data-category="suits">スーツ</button>
+      <button class="category-btn" data-category="beauty">美容</button>
+      <button class="category-btn" data-category="inheritance">相続</button>
+      <button class="category-btn" data-category="wine">ワイン</button>
+      <button class="category-btn" data-category="ai">AI</button>
+    </div>
 
-    <ul class="company-list">
+    <section>
+      <h2 class="section-title">本日のおすすめ</h2>
+      <div class="company-grid" id="featuredList"></div>
+    </section>
 
-      <li>
-        <a href="#" class="company-link">
-          <div class="company-name">三味線ファンクラブ</div>
-          <div class="company-pitch">三味線や和の文化に触れたい方へ。</div>
-          <span class="company-button">詳しく見る</span>
-        </a>
-      </li>
+    <section>
+      <h2 class="section-title">協賛企業一覧</h2>
+      <div class="company-grid" id="companyList"></div>
+      <div class="empty" id="emptyMessage">
+        該当する協賛企業が見つかりませんでした。
+      </div>
+    </section>
+  </main>
 
-      <li>
-        <a href="#" class="company-link">
-          <div class="company-name">池田法律相談室</div>
-          <div class="company-pitch">法律や相続のご相談に対応しています。</div>
-          <span class="company-button">詳しく見る</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#" class="company-link">
-          <div class="company-name">オーダースーツの金井</div>
-          <div class="company-pitch">装いを整えたい方へ。</div>
-          <span class="company-button">詳しく見る</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#" class="company-link">
-          <div class="company-name">西川ヘレン美容医療院</div>
-          <div class="company-pitch">美容医療のご相談はこちら。</div>
-          <span class="company-button">詳しく見る</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#" class="company-link">
-          <div class="company-name">相続対策なら尾形</div>
-          <div class="company-pitch">相続対策を検討したい方向けです。</div>
-          <span class="company-button">詳しく見る</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#" class="company-link">
-          <div class="company-name">ザ・ワインベース銀座</div>
-          <div class="company-pitch">ワインを楽しみたい方へ。</div>
-          <span class="company-button">詳しく見る</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#" class="company-link">
-          <div class="company-name">三味線奏者矢吹</div>
-          <div class="company-pitch">三味線の迫力を感じたい方なら。</div>
-          <span class="company-button">詳しく見る</span>
-        </a>
-      </li>
-
-      <li>
-        <a href="#" class="company-link">
-          <div class="company-name">AIインテグレーションの高村</div>
-          <div class="company-pitch">AI活用や業務効率化のご相談はこちら。</div>
-          <span class="company-button">詳しく見る</span>
-        </a>
-      </li>
-
-    </ul>
-  </div>
-
-  <div class="footer">
+  <footer>
     © 協賛各社一覧
-  </div>
-</div>
+  </footer>
 
+  <script>
+    const companies = [
+      {
+        company_id: "club_shamisen",
+        display_name: "三味線クラブ",
+        short_name: "三味線クラブ",
+        category: "shamisen",
+        category_label: "三味線",
+        tags: "津軽三味線,三味線,和楽器,日本文化,教室,レッスン,習い事,入門,初心者,練習,体験",
+        short_pitch: "三味線や和の文化に触れたい方へ。",
+        priority: 5,
+        show_in_list: true,
+        show_in_ai: true,
+        allow_wiki: true,
+        allow_question_stock: true
+      },
+      {
+        company_id: "ikeda_law",
+        display_name: "池田法律相談",
+        short_name: "池田法律相談",
+        category: "legal",
+        category_label: "法律",
+        tags: "法律,法律相談,弁護士,法務,企業法務,契約,離婚,トラブル,顧問,法的相談",
+        short_pitch: "法律や相談のご相談に対応しています。",
+        priority: 2,
+        show_in_list: true,
+        show_in_ai: true,
+        allow_wiki: true,
+        allow_question_stock: true
+      },
+      {
+        company_id: "kanai_suit",
+        display_name: "オーダースーツ金井",
+        short_name: "オーダースーツ金井",
+        category: "suits",
+        category_label: "スーツ",
+        tags: "オーダースーツ,スーツ,採寸,仕立て,テーラー,礼服,ビジネススーツ,成人式,オーダー,来店",
+        short_pitch: "装いを整えたい方へ、オーダースーツのご相談を承ります。",
+        priority: 3,
+        show_in_list: true,
+        show_in_ai: true,
+        allow_wiki: true,
+        allow_question_stock: true
+      },
+      {
+        company_id: "nishikawa_beauty",
+        display_name: "美容西川",
+        short_name: "美容西川",
+        category: "beauty",
+        category_label: "美容",
+        tags: "美容医療,美容,美肌,肌ケア,アンチエイジング,エイジングケア,施術,カウンセリング,美容相談",
+        short_pitch: "美容医療のご相談はこちら。",
+        priority: 4,
+        show_in_list: true,
+        show_in_ai: true,
+        allow_wiki: true,
+        allow_question_stock: true
+      },
+      {
+        company_id: "ogata_souzoku",
+        display_name: "相続の尾形",
+        short_name: "相続の尾形",
+        category: "inheritance",
+        category_label: "相続",
+        tags: "相続,相続相談,遺産,遺言,相続税,家族信託,相続対策,生前対策,終活",
+        short_pitch: "相続対策を検討したい方向けです。",
+        priority: 5,
+        show_in_list: true,
+        show_in_ai: true,
+        allow_wiki: true,
+        allow_question_stock: true
+      },
+      {
+        company_id: "ozawa_wine",
+        display_name: "ワインベース銀座",
+        short_name: "ワインベース銀座",
+        category: "wine",
+        category_label: "ワイン",
+        tags: "ワイン,ワインバー,グラスワイン,ボトルワイン,ペアリング,飲み比べ,ワイン初心者,デート",
+        short_pitch: "ワインを楽しみたい方へ。",
+        priority: 6,
+        show_in_list: true,
+        show_in_ai: true,
+        allow_wiki: true,
+        allow_question_stock: true
+      },
+      {
+        company_id: "yabuki_shamisen",
+        display_name: "三味線奏者の矢吹",
+        short_name: "三味線奏者の矢吹",
+        category: "shamisen",
+        category_label: "三味線",
+        tags: "津軽三味線,三味線,生演奏,ライブ,公演,ステージ,プロ演奏,パフォーマンス,日本文化ショー,観る三味線",
+        short_pitch: "三味線や和の文化に触れたい方へ。",
+        priority: 10,
+        show_in_list: true,
+        show_in_ai: true,
+        allow_wiki: true,
+        allow_question_stock: true
+      },
+      {
+        company_id: "takamura_ai",
+        display_name: "AIサービス高村",
+        short_name: "AIサービス高村",
+        category: "ai",
+        category_label: "AI",
+        tags: "AI,LINE,AI受付,チャット対応,問い合わせ対応,業務効率化,自動化,AI活用,ヒアリング,導入支援,営業支援",
+        short_pitch: "AI活用や業務効率化のご相談はこちら。",
+        priority: 99,
+        show_in_list: true,
+        show_in_ai: true,
+        allow_wiki: true,
+        allow_question_stock: true
+      }
+    ];
+
+    const searchInput = document.getElementById("searchInput");
+    const companyList = document.getElementById("companyList");
+    const featuredList = document.getElementById("featuredList");
+    const emptyMessage = document.getElementById("emptyMessage");
+    const categoryButtons = document.getElementById("categoryButtons");
+
+    let currentCategory = "all";
+
+    function normalizeText(value) {
+      return String(value || "").toLowerCase().replace(/\s+/g, "");
+    }
+
+    function createCompanyCard(company, featured = false) {
+      const tags = company.tags
+        .split(",")
+        .slice(0, 4)
+        .map(tag => `<span class="tag">${tag}</span>`)
+        .join("");
+
+      const aiButton = company.show_in_ai
+        ? `<a class="action-btn primary" href="#" onclick="alert('${company.display_name} についてAIに質問する導線を後で接続します'); return false;">AIに聞く</a>`
+        : "";
+
+      return `
+        <article class="company-card" data-company-id="${company.company_id}">
+          <div class="company-top">
+            <h3 class="company-name">${company.display_name}</h3>
+            ${featured ? `<span class="rank-badge">おすすめ</span>` : ""}
+          </div>
+
+          <div class="meta">
+            <span class="tag">${company.category_label}</span>
+            ${tags}
+          </div>
+
+          <p class="pitch">${company.short_pitch}</p>
+
+          <div class="actions">
+            <a class="action-btn" href="#" onclick="toggleDetail('${company.company_id}'); return false;">詳しく見る</a>
+            ${aiButton}
+          </div>
+
+          <details id="detail-${company.company_id}">
+            <summary>詳細情報</summary>
+            <p class="detail-text">
+              <strong>表示名：</strong>${company.display_name}<br>
+              <strong>カテゴリ：</strong>${company.category_label}<br>
+              <strong>検索タグ：</strong>${company.tags}
+            </p>
+          </details>
+        </article>
+      `;
+    }
+
+    function toggleDetail(companyId) {
+      const detail = document.getElementById(`detail-${companyId}`);
+      if (detail) {
+        detail.open = !detail.open;
+      }
+    }
+
+    function renderFeatured() {
+      const featuredCompanies = companies
+        .filter(company => company.show_in_list)
+        .sort((a, b) => a.priority - b.priority)
+        .slice(0, 3);
+
+      featuredList.innerHTML = featuredCompanies
+        .map(company => createCompanyCard(company, true))
+        .join("");
+    }
+
+    function renderCompanies() {
+      const keyword = normalizeText(searchInput.value);
+
+      const filtered = companies
+        .filter(company => company.show_in_list)
+        .filter(company => {
+          if (currentCategory === "all") return true;
+          return company.category === currentCategory;
+        })
+        .filter(company => {
+          if (!keyword) return true;
+
+          const target = normalizeText([
+            company.display_name,
+            company.short_name,
+            company.category_label,
+            company.tags,
+            company.short_pitch
+          ].join(" "));
+
+          return target.includes(keyword);
+        })
+        .sort((a, b) => a.priority - b.priority);
+
+      companyList.innerHTML = filtered
+        .map(company => createCompanyCard(company))
+        .join("");
+
+      emptyMessage.style.display = filtered.length === 0 ? "block" : "none";
+    }
+
+    categoryButtons.addEventListener("click", event => {
+      const button = event.target.closest(".category-btn");
+      if (!button) return;
+
+      document.querySelectorAll(".category-btn").forEach(btn => {
+        btn.classList.remove("active");
+      });
+
+      button.classList.add("active");
+      currentCategory = button.dataset.category;
+      renderCompanies();
+    });
+
+    searchInput.addEventListener("input", renderCompanies);
+
+    renderFeatured();
+    renderCompanies();
+  </script>
 </body>
 </html>
