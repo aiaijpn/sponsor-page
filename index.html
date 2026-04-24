@@ -286,6 +286,7 @@
       text-align: center;
       margin: 12px 0;
       letter-spacing: 0.02em;
+      user-select: all;
     }
 
     .modal-actions {
@@ -393,7 +394,7 @@
       <h2 class="modal-title" id="modalCompanyName">AIに聞く</h2>
 
       <p class="modal-text">
-        AIに聞くには、LINEで次の文を送ってください。
+        AIに聞くには、下の文をLINEで送ってください。
       </p>
 
       <div class="command-box" id="modalCommandText">＊固定 金井</div>
@@ -403,13 +404,9 @@
       </div>
 
       <div class="modal-actions">
-        <button class="modal-btn primary" id="copyCommandButton">
-          コピーする
+        <button class="modal-btn primary" id="copyAndOpenLineButton">
+          コピーしてLINEを開く
         </button>
-
-        <a class="modal-btn primary" id="openLineButton" href="#" target="_blank" rel="noopener">
-          LINEを開く
-        </a>
 
         <button class="modal-btn sub" id="closeModalButton">
           閉じる
@@ -555,8 +552,7 @@
     const aiModalOverlay = document.getElementById("aiModalOverlay");
     const modalCompanyName = document.getElementById("modalCompanyName");
     const modalCommandText = document.getElementById("modalCommandText");
-    const copyCommandButton = document.getElementById("copyCommandButton");
-    const openLineButton = document.getElementById("openLineButton");
+    const copyAndOpenLineButton = document.getElementById("copyAndOpenLineButton");
     const closeModalButton = document.getElementById("closeModalButton");
     const copyStatus = document.getElementById("copyStatus");
 
@@ -639,7 +635,6 @@
       modalCompanyName.textContent = `${company.display_name}についてAIに聞く`;
       modalCommandText.textContent = currentFixedCommand;
       copyStatus.style.display = "none";
-      openLineButton.href = LINE_URL;
 
       aiModalOverlay.classList.add("open");
     }
@@ -648,17 +643,21 @@
       aiModalOverlay.classList.remove("open");
     }
 
-    async function copyFixedCommand() {
+    async function copyAndOpenLine() {
       if (!currentFixedCommand) return;
 
       try {
         await navigator.clipboard.writeText(currentFixedCommand);
-        copyStatus.textContent = "コピーしました。LINEで貼り付けて送信してください。";
+        copyStatus.textContent = "コピーしました。LINEを開きます。";
         copyStatus.style.display = "block";
       } catch (error) {
-        copyStatus.textContent = "コピーできませんでした。上の文を長押ししてコピーしてください。";
+        copyStatus.textContent = "コピーできませんでした。上の文を長押ししてコピーしてください。LINEを開きます。";
         copyStatus.style.display = "block";
       }
+
+      setTimeout(() => {
+        window.open(LINE_URL, "_blank", "noopener");
+      }, 300);
     }
 
     function renderFeatured() {
@@ -725,7 +724,7 @@
     });
 
     searchInput.addEventListener("input", renderCompanies);
-    copyCommandButton.addEventListener("click", copyFixedCommand);
+    copyAndOpenLineButton.addEventListener("click", copyAndOpenLine);
     closeModalButton.addEventListener("click", closeAiModal);
 
     aiModalOverlay.addEventListener("click", event => {
