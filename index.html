@@ -280,13 +280,13 @@
       <button class="category-btn" data-category="ai">AI</button>
     </div>
 
-    <section>
+    <section id="featuredSection">
       <h2 class="section-title">本日のおすすめ</h2>
       <div class="company-grid" id="featuredList"></div>
     </section>
 
     <section>
-      <h2 class="section-title">協賛企業一覧</h2>
+      <h2 class="section-title" id="listTitle">協賛企業一覧</h2>
       <div class="company-grid" id="companyList"></div>
       <div class="empty" id="emptyMessage">
         該当する協賛企業が見つかりませんでした。
@@ -417,6 +417,8 @@
     const searchInput = document.getElementById("searchInput");
     const companyList = document.getElementById("companyList");
     const featuredList = document.getElementById("featuredList");
+    const featuredSection = document.getElementById("featuredSection");
+    const listTitle = document.getElementById("listTitle");
     const emptyMessage = document.getElementById("emptyMessage");
     const categoryButtons = document.getElementById("categoryButtons");
 
@@ -424,6 +426,11 @@
 
     function normalizeText(value) {
       return String(value || "").toLowerCase().replace(/\s+/g, "");
+    }
+
+    function getCategoryLabel(category) {
+      const found = companies.find(company => company.category === category);
+      return found ? found.category_label : "協賛企業";
     }
 
     function createCompanyCard(company, featured = false) {
@@ -487,6 +494,14 @@
     }
 
     function renderCompanies() {
+      if (currentCategory === "all") {
+        featuredSection.style.display = "block";
+        listTitle.textContent = "協賛企業一覧";
+      } else {
+        featuredSection.style.display = "none";
+        listTitle.textContent = `${getCategoryLabel(currentCategory)}の協賛企業`;
+      }
+
       const keyword = normalizeText(searchInput.value);
 
       const filtered = companies
