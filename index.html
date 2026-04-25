@@ -430,7 +430,7 @@
         LINEの入力欄に、固定コマンドを入れた状態で開きます。
       </p>
 
-      <div id="aiCommandText" class="command-box">＊固定 矢吹</div>
+      <div id="aiCommandText" class="command-box">【＊固定 矢吹】</div>
 
       <p class="modal-note">
         LINEが開いたら、送信ボタンを押してください。
@@ -723,8 +723,11 @@
       const commandOnly = "＊固定 " + fixedKeyword;
 
       const displayText =
-        commandOnly +
-        "\nこれで会話テーマを\n固定します。\n\n解除するには、\n解除する\nと入れてください";
+        "【" + commandOnly + "】" +
+        "\nこれで会話テーマを固定します。" +
+        "\n\nテーマを解除するには、" +
+        "\n【解除する】" +
+        "\nと入れてください";
 
       currentLineMessage = commandOnly;
 
