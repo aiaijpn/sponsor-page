@@ -260,7 +260,6 @@
       border-radius: 18px;
     }
 
-    /* Modal */
     .modal-backdrop {
       position: fixed;
       inset: 0;
@@ -309,6 +308,13 @@
       letter-spacing: 0.04em;
       margin-bottom: 14px;
       word-break: break-all;
+    }
+
+    .modal-note {
+      margin: -4px 0 14px;
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.6;
     }
 
     .modal-actions {
@@ -414,19 +420,23 @@
     <main id="companyArea"></main>
   </div>
 
-  <!-- AI Modal -->
   <div id="aiModal" class="modal-backdrop" onclick="onModalBackdropClick(event)">
     <div class="modal">
       <h2 id="aiModalTitle" class="modal-title">AIに聞く</h2>
+
       <p class="modal-desc">
-        AIに聞くには、下の文をLINEで送ってください。
+        LINEの入力欄に、下の文を入れた状態で開きます。
       </p>
 
-      <div id="aiCommandText" class="command-box">＊固定 金井</div>
+      <div id="aiCommandText" class="command-box">＊固定 矢吹</div>
+
+      <p class="modal-note">
+        LINEが開いたら、最後に送信ボタンを押してください。
+      </p>
 
       <div class="modal-actions">
-        <button class="modal-primary" onclick="copyCommandAndOpenLine()">
-          コピーしてLINEを開く
+        <button class="modal-primary" onclick="openLineWithMessage()">
+          LINEで送信画面を開く
         </button>
         <button class="modal-secondary" onclick="closeAiModal()">
           閉じる
@@ -435,10 +445,10 @@
     </div>
   </div>
 
-  <div id="toast" class="toast">コピーしました</div>
+  <div id="toast" class="toast">LINEを開きます</div>
 
   <script>
-    const EIICHI_LINE_URL = "https://lin.ee/7A1qL57";
+    const EIICHI_LINE_OFFICIAL_ID = "@816heedb";
 
     const companies = [
       {
@@ -724,19 +734,20 @@
       }
     }
 
-    async function copyCommandAndOpenLine() {
+    function openLineWithMessage() {
       const commandText = document.getElementById("aiCommandText").textContent;
 
-      try {
-        await navigator.clipboard.writeText(commandText);
-        showToast("コピーしました");
-      } catch (e) {
-        showToast("コピーできない場合は手動でコピーしてください");
-      }
+      const lineUrl =
+        "https://line.me/R/oaMessage/" +
+        encodeURIComponent(EIICHI_LINE_OFFICIAL_ID) +
+        "/?" +
+        encodeURIComponent(commandText);
+
+      showToast("LINEを開きます");
 
       setTimeout(() => {
-        window.location.href = EIICHI_LINE_URL;
-      }, 250);
+        window.location.href = lineUrl;
+      }, 150);
     }
 
     function showToast(message) {
