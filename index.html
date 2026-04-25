@@ -303,11 +303,13 @@
       background: #f9fafb;
       padding: 16px;
       text-align: center;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 900;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       margin-bottom: 14px;
-      word-break: break-all;
+      word-break: keep-all;
+      white-space: pre-line;
+      line-height: 1.8;
     }
 
     .modal-note {
@@ -425,13 +427,13 @@
       <h2 id="aiModalTitle" class="modal-title">AIに聞く</h2>
 
       <p class="modal-desc">
-        LINEの入力欄に、下の文を入れた状態で開きます。
+        LINEの入力欄に、固定コマンドを入れた状態で開きます。
       </p>
 
       <div id="aiCommandText" class="command-box">＊固定 矢吹</div>
 
       <p class="modal-note">
-        LINEが開いたら、最後に送信ボタンを押してください。
+        LINEが開いたら、送信ボタンを押してください。
       </p>
 
       <div class="modal-actions">
@@ -535,6 +537,7 @@
     ];
 
     let activeCategory = "すべて";
+    let currentLineMessage = "＊固定 矢吹";
 
     function normalizeText(value) {
       return String(value || "")
@@ -717,8 +720,16 @@
       const title = document.getElementById("aiModalTitle");
       const commandText = document.getElementById("aiCommandText");
 
+      const commandOnly = "＊固定 " + fixedKeyword;
+
+      const displayText =
+        commandOnly +
+        "\nこれで会話テーマを\n固定します。\n\n解除するには、\n解除する\nと入れてください";
+
+      currentLineMessage = commandOnly;
+
       title.textContent = companyName + "についてAIに聞く";
-      commandText.textContent = "＊固定 " + fixedKeyword;
+      commandText.textContent = displayText;
 
       modal.classList.add("show");
     }
@@ -735,13 +746,11 @@
     }
 
     function openLineWithMessage() {
-      const commandText = document.getElementById("aiCommandText").textContent;
-
       const lineUrl =
         "https://line.me/R/oaMessage/" +
         encodeURIComponent(EIICHI_LINE_OFFICIAL_ID) +
         "/?" +
-        encodeURIComponent(commandText);
+        encodeURIComponent(currentLineMessage);
 
       showToast("LINEを開きます");
 
