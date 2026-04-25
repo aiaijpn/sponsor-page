@@ -8,15 +8,18 @@
 
   <style>
     :root {
-      --bg: #f6f7f9;
+      --bg: #f4f6f8;
       --card: #ffffff;
-      --text: #222222;
-      --muted: #666666;
+      --text: #1f2937;
+      --muted: #6b7280;
       --line: #e5e7eb;
-      --main: #1f6feb;
-      --main-soft: #e8f1ff;
-      --shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
-      --radius: 16px;
+      --blue: #1d4ed8;
+      --blue2: #2563eb;
+      --chip: #eef2ff;
+      --chipText: #1e3a8a;
+      --gold: #fef3c7;
+      --goldText: #92400e;
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
     }
 
     * {
@@ -25,69 +28,70 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 20px 14px 72px;
     }
 
     header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--line);
-      padding: 14px 16px 12px;
-    }
-
-    .header-inner {
-      max-width: 880px;
-      margin: 0 auto;
+      margin-bottom: 18px;
     }
 
     h1 {
-      font-size: 22px;
-      margin: 0 0 4px;
+      font-size: 24px;
+      margin: 0 0 8px;
       letter-spacing: 0.02em;
     }
 
     .lead {
-      font-size: 13px;
-      color: var(--muted);
       margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
     }
 
-    main {
-      max-width: 880px;
-      margin: 0 auto;
-      padding: 16px;
+    .search-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(244, 246, 248, 0.96);
+      backdrop-filter: blur(10px);
+      padding: 14px 0 12px;
+      border-bottom: 1px solid rgba(229, 231, 235, 0.85);
     }
 
     .search-box {
-      margin: 16px 0 12px;
-    }
-
-    .search-box input {
       width: 100%;
-      padding: 14px 16px;
-      border-radius: 999px;
       border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 14px 18px;
       font-size: 16px;
       outline: none;
       background: #fff;
     }
 
-    .search-box input:focus {
-      border-color: var(--main);
-      box-shadow: 0 0 0 3px var(--main-soft);
+    .search-box:focus {
+      border-color: var(--blue2);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
     }
 
     .category-scroll {
       display: flex;
-      gap: 8px;
+      gap: 10px;
       overflow-x: auto;
-      padding: 4px 0 12px;
+      padding: 12px 0 2px;
       scrollbar-width: none;
     }
 
@@ -95,163 +99,180 @@
       display: none;
     }
 
-    .category-btn {
+    .cat-btn {
       flex: 0 0 auto;
       border: 1px solid var(--line);
       background: #fff;
-      color: var(--text);
+      color: #111827;
       border-radius: 999px;
-      padding: 8px 14px;
+      padding: 10px 16px;
       font-size: 14px;
       cursor: pointer;
       white-space: nowrap;
     }
 
-    .category-btn.active {
-      background: var(--main);
+    .cat-btn.active {
+      background: var(--blue);
+      border-color: var(--blue);
       color: #fff;
-      border-color: var(--main);
       font-weight: 700;
     }
 
-    .section-title {
-      margin: 22px 0 10px;
-      font-size: 17px;
-      font-weight: 800;
+    .section {
+      margin-top: 22px;
     }
 
-    .company-grid {
-      display: grid;
-      grid-template-columns: 1fr;
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       gap: 12px;
+      margin: 0 0 12px;
+      font-size: 18px;
+    }
+
+    .section-count {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .card-list {
+      display: grid;
+      gap: 14px;
     }
 
     .company-card {
       background: var(--card);
-      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      border-radius: 18px;
       padding: 16px;
       box-shadow: var(--shadow);
-      border: 1px solid rgba(0, 0, 0, 0.03);
     }
 
-    .company-top {
+    .company-head {
       display: flex;
       justify-content: space-between;
-      gap: 12px;
-      align-items: flex-start;
+      align-items: start;
+      gap: 10px;
+      margin-bottom: 8px;
     }
 
     .company-name {
       font-size: 18px;
       font-weight: 800;
-      margin: 0;
+      line-height: 1.35;
     }
 
-    .rank-badge {
+    .badge {
       flex: 0 0 auto;
-      font-size: 11px;
-      padding: 4px 8px;
+      display: inline-flex;
+      align-items: center;
       border-radius: 999px;
-      background: #fff7df;
-      color: #8a5a00;
+      padding: 5px 9px;
+      font-size: 11px;
       font-weight: 700;
+      background: var(--gold);
+      color: var(--goldText);
     }
 
-    .meta {
+    .chips {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
       margin: 8px 0 10px;
     }
 
-    .tag {
-      font-size: 12px;
-      background: var(--main-soft);
-      color: #174ea6;
+    .chip {
+      display: inline-flex;
+      align-items: center;
       border-radius: 999px;
-      padding: 3px 8px;
+      padding: 5px 9px;
+      font-size: 12px;
+      background: var(--chip);
+      color: var(--chipText);
     }
 
-    .pitch {
+    .desc {
+      margin: 0 0 14px;
       font-size: 14px;
-      margin: 0 0 12px;
-      color: #333;
+      color: #374151;
+      line-height: 1.7;
     }
 
-    .actions {
-      display: flex;
-      gap: 8px;
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
       margin-top: 12px;
     }
 
-    .action-btn {
-      flex: 1;
-      text-align: center;
-      text-decoration: none;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 12px;
-      padding: 10px 8px;
+      padding: 12px 10px;
       font-size: 14px;
-      font-weight: 700;
-      border: 1px solid var(--line);
-      color: var(--text);
-      background: #fff;
+      font-weight: 800;
+      text-decoration: none;
       cursor: pointer;
+      border: 1px solid var(--line);
+      min-height: 46px;
     }
 
-    .action-btn.primary {
-      background: var(--main);
+    .btn-detail {
+      background: #fff;
+      color: #111827;
+    }
+
+    .btn-ai {
+      background: var(--blue);
       color: #fff;
-      border-color: var(--main);
+      border-color: var(--blue);
     }
 
     details {
-      margin-top: 10px;
-      border-top: 1px solid var(--line);
+      margin-top: 12px;
+      border-top: 1px dashed var(--line);
       padding-top: 10px;
     }
 
     summary {
       cursor: pointer;
-      font-size: 13px;
-      color: var(--muted);
-      font-weight: 700;
+      color: #374151;
+      font-size: 14px;
     }
 
-    .detail-text {
+    .detail-body {
+      margin-top: 10px;
       font-size: 13px;
       color: var(--muted);
-      margin: 8px 0 0;
+      line-height: 1.7;
     }
 
     .empty {
-      display: none;
+      padding: 28px 16px;
       text-align: center;
       color: var(--muted);
       background: #fff;
-      border-radius: var(--radius);
-      padding: 24px 12px;
-      margin-top: 12px;
+      border: 1px dashed var(--line);
+      border-radius: 18px;
     }
 
-    footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 12px;
-      padding: 28px 12px;
-    }
-
-    .modal-overlay {
-      display: none;
+    /* Modal */
+    .modal-backdrop {
       position: fixed;
       inset: 0;
-      z-index: 100;
-      background: rgba(0, 0, 0, 0.45);
-      padding: 18px;
+      z-index: 1000;
+      display: none;
       align-items: center;
       justify-content: center;
+      padding: 18px;
+      background: rgba(0, 0, 0, 0.45);
     }
 
-    .modal-overlay.open {
+    .modal-backdrop.show {
       display: flex;
     }
 
@@ -259,511 +280,488 @@
       width: 100%;
       max-width: 420px;
       background: #fff;
-      border-radius: 20px;
-      padding: 18px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+      border-radius: 22px;
+      padding: 20px 18px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
     }
 
     .modal-title {
+      margin: 0 0 12px;
       font-size: 18px;
-      font-weight: 800;
-      margin: 0 0 10px;
+      line-height: 1.5;
     }
 
-    .modal-text {
+    .modal-desc {
+      margin: 0 0 14px;
       font-size: 14px;
-      color: #333;
-      margin: 0 0 12px;
+      color: #4b5563;
+      line-height: 1.7;
     }
 
     .command-box {
-      background: #f3f4f6;
       border: 1px solid var(--line);
       border-radius: 14px;
-      padding: 14px;
-      font-size: 18px;
-      font-weight: 800;
+      background: #f9fafb;
+      padding: 16px;
       text-align: center;
-      margin: 12px 0;
-      letter-spacing: 0.02em;
-      user-select: all;
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
+      word-break: break-all;
     }
 
     .modal-actions {
       display: grid;
-      grid-template-columns: 1fr;
       gap: 10px;
-      margin-top: 14px;
     }
 
-    .modal-btn {
+    .modal-primary {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      background: var(--blue2);
+      color: #fff;
+      padding: 14px 12px;
+      font-size: 16px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .modal-secondary {
       width: 100%;
       border: 1px solid var(--line);
       border-radius: 12px;
-      padding: 12px 10px;
+      background: #fff;
+      color: #111827;
+      padding: 13px 12px;
       font-size: 15px;
       font-weight: 800;
       cursor: pointer;
-      background: #fff;
-      color: var(--text);
-      text-align: center;
-      text-decoration: none;
-      display: block;
     }
 
-    .modal-btn.primary {
-      background: var(--main);
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 1200;
+      transform: translateX(-50%) translateY(20px);
+      opacity: 0;
+      pointer-events: none;
+      background: #111827;
       color: #fff;
-      border-color: var(--main);
-    }
-
-    .modal-btn.primary:disabled {
-      opacity: 0.7;
-      cursor: wait;
-    }
-
-    .modal-btn.sub {
-      background: #f9fafb;
-    }
-
-    .copy-status {
-      display: none;
+      padding: 10px 14px;
+      border-radius: 999px;
       font-size: 13px;
-      color: #0f7b3f;
-      font-weight: 700;
-      margin-top: 8px;
-      text-align: center;
+      transition: 0.2s ease;
+      white-space: nowrap;
     }
 
-    @media (min-width: 720px) {
-      .company-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 420px) {
+      .page {
+        padding-left: 12px;
+        padding-right: 12px;
       }
 
       h1 {
-        font-size: 28px;
+        font-size: 22px;
+      }
+
+      .company-card {
+        border-radius: 16px;
+        padding: 15px;
+      }
+
+      .card-actions {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .btn {
+        font-size: 13px;
+        padding-left: 8px;
+        padding-right: 8px;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="header-inner">
+  <div class="page">
+    <header>
       <h1>協賛各社一覧</h1>
-      <p class="lead">会社名・業種・キーワードから協賛企業を探せます。</p>
-    </div>
-  </header>
+      <p class="lead">
+        会社名・業種・地域・キーワードから協賛企業を探せます。
+      </p>
+    </header>
 
-  <main>
-    <div class="search-box">
+    <div class="search-wrap">
       <input
         id="searchInput"
+        class="search-box"
         type="search"
         placeholder="会社名・業種・地域・キーワードで検索"
-        autocomplete="off"
+        oninput="renderCompanies()"
       />
+
+      <div id="categoryButtons" class="category-scroll"></div>
     </div>
 
-    <div class="category-scroll" id="categoryButtons">
-      <button class="category-btn active" data-category="all">すべて</button>
-      <button class="category-btn" data-category="shamisen">三味線</button>
-      <button class="category-btn" data-category="legal">法律</button>
-      <button class="category-btn" data-category="suits">スーツ</button>
-      <button class="category-btn" data-category="beauty">美容</button>
-      <button class="category-btn" data-category="inheritance">相続</button>
-      <button class="category-btn" data-category="wine">ワイン</button>
-      <button class="category-btn" data-category="ai">AI</button>
-    </div>
+    <main id="companyArea"></main>
+  </div>
 
-    <section id="featuredSection">
-      <h2 class="section-title">本日のおすすめ</h2>
-      <div class="company-grid" id="featuredList"></div>
-    </section>
-
-    <section>
-      <h2 class="section-title" id="listTitle">協賛企業一覧</h2>
-      <div class="company-grid" id="companyList"></div>
-      <div class="empty" id="emptyMessage">
-        該当する協賛企業が見つかりませんでした。
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    © 協賛各社一覧
-  </footer>
-
-  <div class="modal-overlay" id="aiModalOverlay">
+  <!-- AI Modal -->
+  <div id="aiModal" class="modal-backdrop" onclick="onModalBackdropClick(event)">
     <div class="modal">
-      <h2 class="modal-title" id="modalCompanyName">AIに聞く</h2>
-
-      <p class="modal-text">
+      <h2 id="aiModalTitle" class="modal-title">AIに聞く</h2>
+      <p class="modal-desc">
         AIに聞くには、下の文をLINEで送ってください。
       </p>
 
-      <div class="command-box" id="modalCommandText">＊固定 金井</div>
-
-      <div class="copy-status" id="copyStatus">
-        コピーしました。
-      </div>
+      <div id="aiCommandText" class="command-box">＊固定 金井</div>
 
       <div class="modal-actions">
-        <button class="modal-btn primary" id="copyAndOpenLineButton">
+        <button class="modal-primary" onclick="copyCommandAndOpenLine()">
           コピーしてLINEを開く
         </button>
-
-        <button class="modal-btn sub" id="closeModalButton">
+        <button class="modal-secondary" onclick="closeAiModal()">
           閉じる
         </button>
       </div>
     </div>
   </div>
 
+  <div id="toast" class="toast">コピーしました</div>
+
   <script>
-    const LINE_URL = "https://lin.ee/7A1qL57";
+    const EIICHI_LINE_URL = "https://lin.ee/7A1qL57";
 
     const companies = [
       {
-        company_id: "club_shamisen",
-        display_name: "三味線クラブ",
-        short_name: "三味線クラブ",
-        category: "shamisen",
-        category_label: "三味線",
-        tags: "津軽三味線,三味線,和楽器,日本文化,教室,レッスン,習い事,入門,初心者,練習,体験",
-        short_pitch: "三味線や和の文化に触れたい方へ。",
-        fixed_command: "＊固定 三味線クラブ",
-        priority: 5,
-        show_in_list: true,
-        show_in_ai: true,
-        allow_wiki: true,
-        allow_question_stock: true
+        name: "三味線ファンクラブ矢吹",
+        category: "三味線",
+        area: "全国",
+        keywords: ["三味線", "和楽器", "ライブ", "教室"],
+        description: "三味線を楽しみたい方へ、演奏・学び・交流のきっかけを提供します。",
+        detail: "三味線に興味がある方、和楽器に触れてみたい方、ライブや教室情報を探したい方向けの協賛企業です。",
+        recommend: true,
+        fixedKeyword: "矢吹"
       },
       {
-        company_id: "ikeda_law",
-        display_name: "池田法律相談",
-        short_name: "池田法律相談",
-        category: "legal",
-        category_label: "法律",
-        tags: "法律,法律相談,弁護士,法務,企業法務,契約,離婚,トラブル,顧問,法的相談",
-        short_pitch: "法律や相談のご相談に対応しています。",
-        fixed_command: "＊固定 池田法律",
-        priority: 2,
-        show_in_list: true,
-        show_in_ai: true,
-        allow_wiki: true,
-        allow_question_stock: true
+        name: "池田法律相談室",
+        category: "法律",
+        area: "東京",
+        keywords: ["法律", "弁護士", "相談", "企業法務"],
+        description: "法律相談・企業法務・トラブル予防について相談できます。",
+        detail: "契約、トラブル、企業法務、日常の法律相談など、専門家への相談導線として使えます。",
+        recommend: true,
+        fixedKeyword: "池田法律"
       },
       {
-        company_id: "kanai_suit",
-        display_name: "オーダースーツ金井",
-        short_name: "オーダースーツ金井",
-        category: "suits",
-        category_label: "スーツ",
-        tags: "オーダースーツ,スーツ,採寸,仕立て,テーラー,礼服,ビジネススーツ,成人式,オーダー,来店",
-        short_pitch: "装いを整えたい方へ、オーダースーツのご相談を承ります。",
-        fixed_command: "＊固定 金井",
-        priority: 3,
-        show_in_list: true,
-        show_in_ai: true,
-        allow_wiki: true,
-        allow_question_stock: true
+        name: "オーダースーツ金井",
+        category: "スーツ",
+        area: "東京",
+        keywords: ["スーツ", "オーダースーツ", "採寸", "仕立て"],
+        description: "装いを整えたい方へ、オーダースーツのご相談を承ります。",
+        detail: "採寸、仕立て、納期、価格帯、用途別のスーツ相談などに対応する想定の協賛企業です。",
+        recommend: true,
+        fixedKeyword: "金井"
       },
       {
-        company_id: "nishikawa_beauty",
-        display_name: "美容西川",
-        short_name: "美容西川",
-        category: "beauty",
-        category_label: "美容",
-        tags: "美容医療,美容,美肌,肌ケア,アンチエイジング,エイジングケア,施術,カウンセリング,美容相談",
-        short_pitch: "美容医療のご相談はこちら。",
-        fixed_command: "＊固定 美容西川",
-        priority: 4,
-        show_in_list: true,
-        show_in_ai: true,
-        allow_wiki: true,
-        allow_question_stock: true
+        name: "美容西川",
+        category: "美容",
+        area: "東京",
+        keywords: ["美容", "エステ", "肌", "ケア"],
+        description: "美容・肌ケア・身だしなみに関する相談先です。",
+        detail: "美容に関心のある方、肌ケアや印象改善を検討している方向けの協賛企業です。",
+        recommend: true,
+        fixedKeyword: "美容西川"
       },
       {
-        company_id: "ogata_souzoku",
-        display_name: "相続の尾形",
-        short_name: "相続の尾形",
-        category: "inheritance",
-        category_label: "相続",
-        tags: "相続,相続相談,遺産,遺言,相続税,家族信託,相続対策,生前対策,終活",
-        short_pitch: "相続対策を検討したい方向けです。",
-        fixed_command: "＊固定 尾形",
-        priority: 5,
-        show_in_list: true,
-        show_in_ai: true,
-        allow_wiki: true,
-        allow_question_stock: true
+        name: "相続対策なら尾形",
+        category: "相続",
+        area: "東京",
+        keywords: ["相続", "遺言", "資産", "相談"],
+        description: "相続対策・遺言・資産承継について相談できます。",
+        detail: "相続前の準備、遺言、家族間の整理、資産承継の相談導線として使えます。",
+        recommend: true,
+        fixedKeyword: "尾形"
       },
       {
-        company_id: "ozawa_wine",
-        display_name: "ワインベース銀座",
-        short_name: "ワインベース銀座",
-        category: "wine",
-        category_label: "ワイン",
-        tags: "ワイン,ワインバー,グラスワイン,ボトルワイン,ペアリング,飲み比べ,ワイン初心者,デート",
-        short_pitch: "ワインを楽しみたい方へ。",
-        fixed_command: "＊固定 ワイン",
-        priority: 6,
-        show_in_list: true,
-        show_in_ai: true,
-        allow_wiki: true,
-        allow_question_stock: true
+        name: "ワインバー小澤",
+        category: "飲食",
+        area: "銀座",
+        keywords: ["ワイン", "バー", "飲食", "銀座"],
+        description: "ワインと会話を楽しめる飲食店です。",
+        detail: "会食、紹介、交流、軽い接待などに使いやすい飲食系協賛企業です。",
+        recommend: false,
+        fixedKeyword: "小澤"
       },
       {
-        company_id: "yabuki_shamisen",
-        display_name: "三味線奏者の矢吹",
-        short_name: "三味線奏者の矢吹",
-        category: "shamisen",
-        category_label: "三味線",
-        tags: "津軽三味線,三味線,生演奏,ライブ,公演,ステージ,プロ演奏,パフォーマンス,日本文化ショー,観る三味線",
-        short_pitch: "三味線や和の文化に触れたい方へ。",
-        fixed_command: "＊固定 矢吹",
-        priority: 10,
-        show_in_list: true,
-        show_in_ai: true,
-        allow_wiki: true,
-        allow_question_stock: true
-      },
-      {
-        company_id: "takamura_ai",
-        display_name: "AIサービス高村",
-        short_name: "AIサービス高村",
-        category: "ai",
-        category_label: "AI",
-        tags: "AI,LINE,AI受付,チャット対応,問い合わせ対応,業務効率化,自動化,AI活用,ヒアリング,導入支援,営業支援",
-        short_pitch: "AI活用や業務効率化のご相談はこちら。",
-        fixed_command: "＊固定 高村AI",
-        priority: 99,
-        show_in_list: true,
-        show_in_ai: true,
-        allow_wiki: true,
-        allow_question_stock: true
+        name: "高村AIインテグレーション",
+        category: "AI",
+        area: "全国",
+        keywords: ["AI", "業務効率", "ChatGPT", "自動化"],
+        description: "AIを業務の流れに組み込み、効率化と収益化を支援します。",
+        detail: "LINE、Google Sheets、ChatGPT API、業務フロー改善などを組み合わせたAI導入支援です。",
+        recommend: true,
+        fixedKeyword: "高村AI"
       }
     ];
 
-    const searchInput = document.getElementById("searchInput");
-    const companyList = document.getElementById("companyList");
-    const featuredList = document.getElementById("featuredList");
-    const featuredSection = document.getElementById("featuredSection");
-    const listTitle = document.getElementById("listTitle");
-    const emptyMessage = document.getElementById("emptyMessage");
-    const categoryButtons = document.getElementById("categoryButtons");
+    const categories = [
+      "すべて",
+      "三味線",
+      "法律",
+      "スーツ",
+      "美容",
+      "相続",
+      "飲食",
+      "AI"
+    ];
 
-    const aiModalOverlay = document.getElementById("aiModalOverlay");
-    const modalCompanyName = document.getElementById("modalCompanyName");
-    const modalCommandText = document.getElementById("modalCommandText");
-    const copyAndOpenLineButton = document.getElementById("copyAndOpenLineButton");
-    const closeModalButton = document.getElementById("closeModalButton");
-    const copyStatus = document.getElementById("copyStatus");
-
-    let currentCategory = "all";
-    let currentFixedCommand = "";
+    let activeCategory = "すべて";
 
     function normalizeText(value) {
-      return String(value || "").toLowerCase().replace(/\s+/g, "");
-    }
-
-    function getCategoryLabel(category) {
-      const found = companies.find(company => company.category === category);
-      return found ? found.category_label : "協賛企業";
-    }
-
-    function escapeForAttribute(value) {
       return String(value || "")
-        .replace(/&/g, "&amp;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#39;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;");
+        .toLowerCase()
+        .replace(/\s+/g, "")
+        .replace(/[　]/g, "");
     }
 
-    function createCompanyCard(company, featured = false) {
-      const tags = company.tags
-        .split(",")
-        .slice(0, 4)
-        .map(tag => `<span class="tag">${tag}</span>`)
-        .join("");
+    function companyMatchesSearch(company, query) {
+      if (!query) return true;
 
-      const aiButton = company.show_in_ai
-        ? `<button class="action-btn primary" onclick="openAiModal('${escapeForAttribute(company.company_id)}')">AIに聞く</button>`
-        : "";
+      const target = normalizeText([
+        company.name,
+        company.category,
+        company.area,
+        company.description,
+        company.detail,
+        ...(company.keywords || [])
+      ].join(" "));
+
+      return target.includes(query);
+    }
+
+    function getFilteredCompanies() {
+      const query = normalizeText(document.getElementById("searchInput").value);
+
+      return companies.filter((company) => {
+        const categoryOk =
+          activeCategory === "すべて" || company.category === activeCategory;
+
+        const searchOk = companyMatchesSearch(company, query);
+
+        return categoryOk && searchOk;
+      });
+    }
+
+    function getRecommendedCompanies() {
+      const query = normalizeText(document.getElementById("searchInput").value);
+
+      return companies.filter((company) => {
+        const searchOk = companyMatchesSearch(company, query);
+        return company.recommend && searchOk;
+      });
+    }
+
+    function renderCategoryButtons() {
+      const wrap = document.getElementById("categoryButtons");
+
+      wrap.innerHTML = categories.map((category) => {
+        const active = category === activeCategory ? "active" : "";
+
+        return `
+          <button
+            class="cat-btn ${active}"
+            onclick="setCategory('${escapeHtml(category)}')"
+          >
+            ${escapeHtml(category)}
+          </button>
+        `;
+      }).join("");
+    }
+
+    function setCategory(category) {
+      activeCategory = category;
+      renderCompanies();
+    }
+
+    function renderCompanies() {
+      renderCategoryButtons();
+
+      const area = document.getElementById("companyArea");
+      const filtered = getFilteredCompanies();
+      const recommended = getRecommendedCompanies();
+
+      let html = "";
+
+      if (activeCategory !== "すべて") {
+        html += renderSection(
+          activeCategory,
+          filtered,
+          `${activeCategory}カテゴリ`
+        );
+
+        const recommendedExceptCurrent = recommended.filter(
+          (company) => company.category !== activeCategory
+        );
+
+        html += renderSection(
+          "おすすめ",
+          recommendedExceptCurrent,
+          "その他のおすすめ"
+        );
+      } else {
+        html += renderSection("おすすめ", recommended, "本日のおすすめ");
+        html += renderSection("すべての協賛企業", filtered, "全件");
+      }
+
+      area.innerHTML = html;
+    }
+
+    function renderSection(title, list, label) {
+      if (!list || list.length === 0) {
+        if (title === "おすすめ") return "";
+
+        return `
+          <section class="section">
+            <h2 class="section-title">
+              ${escapeHtml(title)}
+              <span class="section-count">0件</span>
+            </h2>
+            <div class="empty">該当する協賛企業がありません。</div>
+          </section>
+        `;
+      }
 
       return `
-        <article class="company-card" data-company-id="${company.company_id}">
-          <div class="company-top">
-            <h3 class="company-name">${company.display_name}</h3>
-            ${featured ? `<span class="rank-badge">おすすめ</span>` : ""}
+        <section class="section">
+          <h2 class="section-title">
+            ${escapeHtml(title)}
+            <span class="section-count">${escapeHtml(label)}・${list.length}件</span>
+          </h2>
+          <div class="card-list">
+            ${list.map(renderCompanyCard).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderCompanyCard(company) {
+      const chips = [
+        company.category,
+        company.area,
+        ...(company.keywords || []).slice(0, 4)
+      ];
+
+      return `
+        <article class="company-card">
+          <div class="company-head">
+            <div class="company-name">${escapeHtml(company.name)}</div>
+            ${company.recommend ? `<span class="badge">おすすめ</span>` : ""}
           </div>
 
-          <div class="meta">
-            <span class="tag">${company.category_label}</span>
-            ${tags}
+          <div class="chips">
+            ${chips.map((chip) => `<span class="chip">${escapeHtml(chip)}</span>`).join("")}
           </div>
 
-          <p class="pitch">${company.short_pitch}</p>
+          <p class="desc">${escapeHtml(company.description)}</p>
 
-          <div class="actions">
-            <a class="action-btn" href="#" onclick="toggleDetail('${company.company_id}'); return false;">詳しく見る</a>
-            ${aiButton}
+          <div class="card-actions">
+            <button class="btn btn-detail" onclick="toggleDetailFromButton(this)">
+              詳しく見る
+            </button>
+            <button
+              class="btn btn-ai"
+              onclick="openAiModal('${escapeAttr(company.name)}', '${escapeAttr(company.fixedKeyword)}')"
+            >
+              AIに聞く
+            </button>
           </div>
 
-          <details id="detail-${company.company_id}">
+          <details>
             <summary>詳細情報</summary>
-            <p class="detail-text">
-              <strong>表示名：</strong>${company.display_name}<br>
-              <strong>カテゴリ：</strong>${company.category_label}<br>
-              <strong>検索タグ：</strong>${company.tags}
-            </p>
+            <div class="detail-body">
+              ${escapeHtml(company.detail)}
+            </div>
           </details>
         </article>
       `;
     }
 
-    function toggleDetail(companyId) {
-      const detail = document.getElementById(`detail-${companyId}`);
-      if (detail) {
-        detail.open = !detail.open;
-      }
+    function toggleDetailFromButton(button) {
+      const card = button.closest(".company-card");
+      const detail = card.querySelector("details");
+
+      detail.open = !detail.open;
     }
 
-    function openAiModal(companyId) {
-      const company = companies.find(item => item.company_id === companyId);
-      if (!company) return;
+    function openAiModal(companyName, fixedKeyword) {
+      const modal = document.getElementById("aiModal");
+      const title = document.getElementById("aiModalTitle");
+      const commandText = document.getElementById("aiCommandText");
 
-      currentFixedCommand = company.fixed_command || `＊固定 ${company.short_name}`;
+      title.textContent = companyName + "についてAIに聞く";
+      commandText.textContent = "＊固定 " + fixedKeyword;
 
-      modalCompanyName.textContent = `${company.display_name}についてAIに聞く`;
-      modalCommandText.textContent = currentFixedCommand;
-      copyStatus.style.display = "none";
-
-      copyAndOpenLineButton.disabled = false;
-      copyAndOpenLineButton.textContent = "コピーしてLINEを開く";
-
-      aiModalOverlay.classList.add("open");
+      modal.classList.add("show");
     }
 
     function closeAiModal() {
-      aiModalOverlay.classList.remove("open");
+      const modal = document.getElementById("aiModal");
+      modal.classList.remove("show");
     }
 
-    async function copyAndOpenLine() {
-      if (!currentFixedCommand) return;
-
-      const WAIT_MS = 900;
-
-      let lineWindow = null;
-
-      try {
-        lineWindow = window.open("about:blank", "_blank");
-      } catch (error) {
-        lineWindow = null;
-      }
-
-      copyAndOpenLineButton.disabled = true;
-      copyAndOpenLineButton.textContent = "コピー中...";
-
-      try {
-        await navigator.clipboard.writeText(currentFixedCommand);
-        copyStatus.textContent = "コピーしました。LINEを開きます。";
-        copyStatus.style.display = "block";
-      } catch (error) {
-        copyStatus.textContent = "コピーできませんでした。上の文を長押ししてコピーしてください。LINEを開きます。";
-        copyStatus.style.display = "block";
-      }
-
-      copyAndOpenLineButton.textContent = "LINEを開いています...";
-
-      setTimeout(() => {
-        if (lineWindow) {
-          lineWindow.location.href = LINE_URL;
-        } else {
-          window.location.href = LINE_URL;
-        }
-
-        copyAndOpenLineButton.disabled = false;
-        copyAndOpenLineButton.textContent = "コピーしてLINEを開く";
-      }, WAIT_MS);
-    }
-
-    function renderFeatured() {
-      const featuredCompanies = companies
-        .filter(company => company.show_in_list)
-        .sort((a, b) => a.priority - b.priority)
-        .slice(0, 3);
-
-      featuredList.innerHTML = featuredCompanies
-        .map(company => createCompanyCard(company, true))
-        .join("");
-    }
-
-    function renderCompanies() {
-      if (currentCategory === "all") {
-        featuredSection.style.display = "block";
-        listTitle.textContent = "協賛企業一覧";
-      } else {
-        featuredSection.style.display = "none";
-        listTitle.textContent = `${getCategoryLabel(currentCategory)}の協賛企業`;
-      }
-
-      const keyword = normalizeText(searchInput.value);
-
-      const filtered = companies
-        .filter(company => company.show_in_list)
-        .filter(company => {
-          if (currentCategory === "all") return true;
-          return company.category === currentCategory;
-        })
-        .filter(company => {
-          if (!keyword) return true;
-
-          const target = normalizeText([
-            company.display_name,
-            company.short_name,
-            company.category_label,
-            company.tags,
-            company.short_pitch
-          ].join(" "));
-
-          return target.includes(keyword);
-        })
-        .sort((a, b) => a.priority - b.priority);
-
-      companyList.innerHTML = filtered
-        .map(company => createCompanyCard(company))
-        .join("");
-
-      emptyMessage.style.display = filtered.length === 0 ? "block" : "none";
-    }
-
-    categoryButtons.addEventListener("click", event => {
-      const button = event.target.closest(".category-btn");
-      if (!button) return;
-
-      document.querySelectorAll(".category-btn").forEach(btn => {
-        btn.classList.remove("active");
-      });
-
-      button.classList.add("active");
-      currentCategory = button.dataset.category;
-      renderCompanies();
-    });
-
-    searchInput.addEventListener("input", renderCompanies);
-    copyAndOpenLineButton.addEventListener("click", copyAndOpenLine);
-    closeModalButton.addEventListener("click", closeAiModal);
-
-    aiModalOverlay.addEventListener("click", event => {
-      if (event.target === aiModalOverlay) {
+    function onModalBackdropClick(event) {
+      if (event.target.id === "aiModal") {
         closeAiModal();
       }
-    });
+    }
 
-    renderFeatured();
+    async function copyCommandAndOpenLine() {
+      const commandText = document.getElementById("aiCommandText").textContent;
+
+      try {
+        await navigator.clipboard.writeText(commandText);
+        showToast("コピーしました");
+      } catch (e) {
+        showToast("コピーできない場合は手動でコピーしてください");
+      }
+
+      setTimeout(() => {
+        window.location.href = EIICHI_LINE_URL;
+      }, 250);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 1600);
+    }
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function escapeAttr(value) {
+      return escapeHtml(value).replace(/`/g, "&#096;");
+    }
+
     renderCompanies();
   </script>
 </body>
