@@ -1,79 +1,341 @@
-<li>
-  <a href="https://example.com/shamisen-club" target="_blank" rel="noopener noreferrer" class="company-link">
-    <div class="company-name">三味線ファンクラブ</div>
-    <div class="company-pitch">三味線や和の文化に触れたい方へ。</div>
-    <div class="company-button-wrap">
-      <span class="company-button">詳しく見る</span>
-    </div>
-  </a>
-</li>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>つながり先一覧</title>
+  <style>
+    :root {
+      --bg: #f4f8fc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #526070;
+      --line: #d9e4ef;
+      --blue: #0b5ed7;
+      --blue-dark: #073f93;
+      --soft-blue: #eaf3ff;
+      --black: #111827;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+    }
 
-<li>
-  <a href="https://example.com/ikeda-legal" target="_blank" rel="noopener noreferrer" class="company-link">
-    <div class="company-name">池田法律相談室</div>
-    <div class="company-pitch">法律や相続のご相談に対応しています。</div>
-    <div class="company-button-wrap">
-      <span class="company-button">詳しく見る</span>
-    </div>
-  </a>
-</li>
+    * {
+      box-sizing: border-box;
+    }
 
-<li>
-  <a href="https://example.com/kanai-suits" target="_blank" rel="noopener noreferrer" class="company-link">
-    <div class="company-name">オーダースーツの金井</div>
-    <div class="company-pitch">装いを整えたい方へ、オーダースーツのご相談を承ります。</div>
-    <div class="company-button-wrap">
-      <span class="company-button">詳しく見る</span>
-    </div>
-  </a>
-</li>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background:
+        linear-gradient(180deg, #ffffff 0%, var(--bg) 42%, #ffffff 100%);
+      color: var(--text);
+    }
 
-<li>
-  <a href="https://example.com/nishikawa-beauty" target="_blank" rel="noopener noreferrer" class="company-link">
-    <div class="company-name">西川ヘレン美容医療院</div>
-    <div class="company-pitch">美容医療のご相談はこちら。</div>
-    <div class="company-button-wrap">
-      <span class="company-button">詳しく見る</span>
-    </div>
-  </a>
-</li>
+    img {
+      display: block;
+      max-width: 100%;
+    }
 
-<li>
-  <a href="https://example.com/ogata-souzoku" target="_blank" rel="noopener noreferrer" class="company-link">
-    <div class="company-name">相続対策なら尾形</div>
-    <div class="company-pitch">相続対策を検討したい方向けです。</div>
-    <div class="company-button-wrap">
-      <span class="company-button">詳しく見る</span>
-    </div>
-  </a>
-</li>
+    a {
+      color: inherit;
+    }
 
-<li>
-  <a href="https://example.com/ozawa-wine" target="_blank" rel="noopener noreferrer" class="company-link">
-    <div class="company-name">ザ・ワインベース銀座</div>
-    <div class="company-pitch">ワインを楽しみたい方へ。</div>
-    <div class="company-button-wrap">
-      <span class="company-button">詳しく見る</span>
-    </div>
-  </a>
-</li>
+    .page {
+      width: min(100%, 1040px);
+      margin: 0 auto;
+      padding: 32px 18px 56px;
+    }
 
-<li>
-  <a href="https://example.com/yabuki-shamisen" target="_blank" rel="noopener noreferrer" class="company-link">
-    <div class="company-name">三味線奏者矢吹</div>
-    <div class="company-pitch">三味線の迫力を感じたい方なら。</div>
-    <div class="company-button-wrap">
-      <span class="company-button">詳しく見る</span>
-    </div>
-  </a>
-</li>
+    .hero {
+      padding: 24px 0 26px;
+    }
 
-<li>
-  <a href="https://example.com/takamura-ai" target="_blank" rel="noopener noreferrer" class="company-link">
-    <div class="company-name">AIインテグレーションの高村</div>
-    <div class="company-pitch">AI活用や業務効率化のご相談はこちら。</div>
-    <div class="company-button-wrap">
-      <span class="company-button">詳しく見る</span>
-    </div>
-  </a>
-</li>
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 14px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--blue-dark);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--black);
+      font-size: clamp(34px, 9vw, 56px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 620px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .intro {
+      margin: 24px 0 0;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: #334155;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 28px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      min-height: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .card-image {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: var(--soft-blue);
+      object-fit: cover;
+    }
+
+    .card-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 18px;
+    }
+
+    .genre {
+      width: fit-content;
+      margin: 0 0 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--blue-dark);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .card h2 {
+      margin: 0;
+      color: var(--black);
+      font-size: 21px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .description {
+      margin: 10px 0 0;
+      color: #334155;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .example {
+      margin: 16px 0 0;
+      padding: 13px 14px;
+      border-left: 4px solid var(--blue);
+      background: #f8fbff;
+      color: #1f2937;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .example strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--black);
+      font-size: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 52px;
+      margin-top: auto;
+      padding: 14px 16px;
+      border-radius: 8px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 10px 22px rgba(11, 94, 215, 0.22);
+    }
+
+    .button:focus-visible {
+      outline: 3px solid rgba(11, 94, 215, 0.28);
+      outline-offset: 3px;
+    }
+
+    .footer {
+      margin-top: 34px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      .list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 620px) {
+      .page {
+        padding: 26px 14px 42px;
+      }
+
+      .hero {
+        padding-top: 10px;
+      }
+
+      .subtitle {
+        font-size: 15px;
+      }
+
+      .intro {
+        margin-top: 20px;
+      }
+
+      .list {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .card-body {
+        padding: 17px;
+      }
+
+      .card h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">LINEの栄一ツールで相談</p>
+      <h1 id="page-title">つながり先一覧</h1>
+      <p class="subtitle">気になる相談先を、まずはAIに聞いてみる</p>
+      <p class="intro">
+        すぐに問い合わせる前に、内容を整理したり、聞き方を相談したりできる一覧です。気になるジャンルを選んで、LINEのAIに軽く聞いてみてください。
+      </p>
+    </section>
+
+    <section class="list" aria-label="つながり先">
+      <article class="card">
+        <img class="card-image" src="shamisen.png" alt="三味線のつながり先イメージ" />
+        <div class="card-body">
+          <p class="genre">三味線・和文化</p>
+          <h2>三味線ファンクラブ</h2>
+          <p class="description">三味線や和楽器に触れてみたい人へ。体験、演奏、交流のきっかけを探せます。</p>
+          <p class="example"><strong>相談例</strong>初心者でも参加しやすい三味線の場を知りたい</p>
+          <a class="button" href="https://lin.ee/7A1qL57">AIに聞いてみる</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <img class="card-image" src="igyoushu.png" alt="法律相談のつながり先イメージ" />
+        <div class="card-body">
+          <p class="genre">法律相談</p>
+          <h2>池田法律相談室</h2>
+          <p class="description">契約、トラブル、相続など、専門家に聞く前の整理から相談できます。</p>
+          <p class="example"><strong>相談例</strong>この内容は弁護士に相談した方がいいか知りたい</p>
+          <a class="button" href="https://lin.ee/7A1qL57">AIに聞いてみる</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <img class="card-image" src="img10.png" alt="オーダースーツのつながり先イメージ" />
+        <div class="card-body">
+          <p class="genre">装い・スーツ</p>
+          <h2>オーダースーツの金井</h2>
+          <p class="description">仕事、式典、初対面の場など、印象を整えたい時の装い相談に。</p>
+          <p class="example"><strong>相談例</strong>自分に合うスーツの選び方を先に相談したい</p>
+          <a class="button" href="https://lin.ee/7A1qL57">AIに聞いてみる</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <img class="card-image" src="josikai.png" alt="美容相談のつながり先イメージ" />
+        <div class="card-body">
+          <p class="genre">美容・ケア</p>
+          <h2>西川ヘレン美容医療院</h2>
+          <p class="description">肌、身だしなみ、印象づくりなど、美容の悩みをやわらかく相談できます。</p>
+          <p class="example"><strong>相談例</strong>美容医療とエステの違いを知ってから決めたい</p>
+          <a class="button" href="https://lin.ee/7A1qL57">AIに聞いてみる</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <img class="card-image" src="igyoushu.png" alt="相続相談のつながり先イメージ" />
+        <div class="card-body">
+          <p class="genre">相続・家族の整理</p>
+          <h2>相続対策なら尾形</h2>
+          <p class="description">相続、遺言、資産承継など、家族で話す前の準備にも使えます。</p>
+          <p class="example"><strong>相談例</strong>相続対策で最初に確認することを教えてほしい</p>
+          <a class="button" href="https://lin.ee/7A1qL57">AIに聞いてみる</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <img class="card-image" src="inshoku.png" alt="飲食店のつながり先イメージ" />
+        <div class="card-body">
+          <p class="genre">飲食・会食</p>
+          <h2>ザ・ワインベース銀座</h2>
+          <p class="description">ワインや会食の場を探したい時に。気軽な集まりから紹介の場まで。</p>
+          <p class="example"><strong>相談例</strong>銀座で会話しやすいワインのお店を探したい</p>
+          <a class="button" href="https://lin.ee/7A1qL57">AIに聞いてみる</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <img class="card-image" src="shamisen.png" alt="三味線奏者のつながり先イメージ" />
+        <div class="card-body">
+          <p class="genre">演奏・イベント</p>
+          <h2>三味線奏者矢吹</h2>
+          <p class="description">三味線の演奏、イベント出演、和の雰囲気づくりに関心がある方へ。</p>
+          <p class="example"><strong>相談例</strong>イベントで三味線演奏をお願いできるか聞きたい</p>
+          <a class="button" href="https://lin.ee/7A1qL57">AIに聞いてみる</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <img class="card-image" src="img10.png" alt="AI活用相談のつながり先イメージ" />
+        <div class="card-body">
+          <p class="genre">AI・業務効率化</p>
+          <h2>AIインテグレーションの高村</h2>
+          <p class="description">AI活用、LINE連携、業務の自動化など、まず何から始めるかを相談できます。</p>
+          <p class="example"><strong>相談例</strong>自分の仕事にAIをどう使えるか整理したい</p>
+          <a class="button" href="https://lin.ee/7A1qL57">AIに聞いてみる</a>
+        </div>
+      </article>
+    </section>
+
+    <p class="footer">掲載内容は相談の入口です。詳しい確認はLINEの栄一ツールから進めてください。</p>
+  </main>
+</body>
+</html>

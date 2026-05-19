@@ -3,23 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>協賛各社一覧</title>
-
+  <title>コミュニティ入口</title>
   <style>
     :root {
-      --bg: #f4f6f8;
+      --bg: #f4f8fc;
       --card: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --line: #e5e7eb;
-      --blue: #1d4ed8;
-      --blue2: #2563eb;
-      --chip: #eef2ff;
-      --chipText: #1e3a8a;
-      --gold: #fef3c7;
-      --goldText: #92400e;
-      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --text: #0f172a;
+      --muted: #526070;
+      --line: #d9e4ef;
+      --blue: #0b5ed7;
+      --blue-dark: #073f93;
+      --soft-blue: #eaf3ff;
+      --black: #111827;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
     }
 
     * {
@@ -28,764 +24,149 @@
 
     body {
       margin: 0;
-      font-family:
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-      background: var(--bg);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 54%, #ffffff 100%);
       color: var(--text);
     }
 
     .page {
-      width: 100%;
-      max-width: 760px;
+      width: min(100%, 760px);
       margin: 0 auto;
-      padding: 20px 14px 72px;
+      padding: 32px 16px 56px;
     }
 
-    header {
-      margin-bottom: 18px;
+    .hero {
+      padding: 18px 0 24px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      margin: 0 0 14px;
+      padding: 7px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--blue-dark);
+      font-size: 13px;
+      font-weight: 700;
     }
 
     h1 {
-      font-size: 24px;
-      margin: 0 0 8px;
-      letter-spacing: 0.02em;
+      margin: 0;
+      color: var(--black);
+      font-size: clamp(32px, 9vw, 48px);
+      line-height: 1.12;
+      letter-spacing: 0;
     }
 
     .lead {
-      margin: 0;
-      font-size: 14px;
+      margin: 14px 0 0;
       color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .search-wrap {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(244, 246, 248, 0.96);
-      backdrop-filter: blur(10px);
-      padding: 14px 0 12px;
-      border-bottom: 1px solid rgba(229, 231, 235, 0.85);
-    }
-
-    .search-box {
-      width: 100%;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      padding: 14px 18px;
-      font-size: 16px;
-      outline: none;
-      background: #fff;
-    }
-
-    .search-box:focus {
-      border-color: var(--blue2);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
-    }
-
-    .category-scroll {
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding: 12px 0 2px;
-      scrollbar-width: none;
-    }
-
-    .category-scroll::-webkit-scrollbar {
-      display: none;
-    }
-
-    .cat-btn {
-      flex: 0 0 auto;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: #111827;
-      border-radius: 999px;
-      padding: 10px 16px;
-      font-size: 14px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .cat-btn.active {
-      background: var(--blue);
-      border-color: var(--blue);
-      color: #fff;
-      font-weight: 700;
-    }
-
-    .section {
-      margin-top: 22px;
-    }
-
-    .section-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin: 0 0 12px;
-      font-size: 18px;
-    }
-
-    .section-count {
-      font-size: 12px;
-      color: var(--muted);
-      font-weight: 500;
-    }
-
-    .card-list {
-      display: grid;
-      gap: 14px;
-    }
-
-    .company-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 16px;
-      box-shadow: var(--shadow);
-    }
-
-    .company-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    .company-name {
-      font-size: 18px;
-      font-weight: 800;
-      line-height: 1.35;
-    }
-
-    .badge {
-      flex: 0 0 auto;
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 5px 9px;
-      font-size: 11px;
-      font-weight: 700;
-      background: var(--gold);
-      color: var(--goldText);
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin: 8px 0 10px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      border-radius: 999px;
-      padding: 5px 9px;
-      font-size: 12px;
-      background: var(--chip);
-      color: var(--chipText);
-    }
-
-    .desc {
-      margin: 0 0 14px;
-      font-size: 14px;
-      color: #374151;
-      line-height: 1.7;
-    }
-
-    .card-actions {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 12px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-      padding: 12px 10px;
-      font-size: 14px;
-      font-weight: 800;
-      text-decoration: none;
-      cursor: pointer;
-      border: 1px solid var(--line);
-      min-height: 46px;
-    }
-
-    .btn-detail {
-      background: #fff;
-      color: #111827;
-    }
-
-    .btn-ai {
-      background: var(--blue);
-      color: #fff;
-      border-color: var(--blue);
-    }
-
-    details {
-      margin-top: 12px;
-      border-top: 1px dashed var(--line);
-      padding-top: 10px;
-    }
-
-    summary {
-      cursor: pointer;
-      color: #374151;
-      font-size: 14px;
-    }
-
-    .detail-body {
-      margin-top: 10px;
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .empty {
-      padding: 28px 16px;
-      text-align: center;
-      color: var(--muted);
-      background: #fff;
-      border: 1px dashed var(--line);
-      border-radius: 18px;
-    }
-
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 18px;
-      background: rgba(0, 0, 0, 0.45);
-    }
-
-    .modal-backdrop.show {
-      display: flex;
-    }
-
-    .modal {
-      width: 100%;
-      max-width: 420px;
-      background: #fff;
-      border-radius: 22px;
-      padding: 20px 18px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
-    }
-
-    .modal-title {
-      margin: 0 0 12px;
-      font-size: 18px;
-      line-height: 1.5;
-    }
-
-    .modal-desc {
-      margin: 0 0 14px;
-      font-size: 14px;
-      color: #4b5563;
-      line-height: 1.7;
-    }
-
-    .command-box {
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: #f9fafb;
-      padding: 16px;
-      text-align: center;
-      font-size: 17px;
-      font-weight: 900;
-      letter-spacing: 0.03em;
-      margin-bottom: 14px;
-      word-break: keep-all;
-      white-space: pre-line;
+      font-size: 15px;
       line-height: 1.8;
     }
 
-    .modal-note {
-      margin: -4px 0 14px;
-      font-size: 13px;
-      color: #6b7280;
-      line-height: 1.6;
-    }
-
-    .modal-actions {
+    .community-list {
       display: grid;
-      gap: 10px;
+      gap: 12px;
+      margin-top: 24px;
     }
 
-    .modal-primary {
-      width: 100%;
-      border: none;
-      border-radius: 12px;
-      background: var(--blue2);
-      color: #fff;
-      padding: 14px 12px;
-      font-size: 16px;
-      font-weight: 900;
-      cursor: pointer;
-    }
-
-    .modal-secondary {
-      width: 100%;
+    .community-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 74px;
+      padding: 18px;
       border: 1px solid var(--line);
-      border-radius: 12px;
-      background: #fff;
-      color: #111827;
-      padding: 13px 12px;
-      font-size: 15px;
+      border-radius: 8px;
+      background: var(--card);
+      color: var(--black);
+      text-decoration: none;
+      box-shadow: var(--shadow);
+    }
+
+    .community-card:focus-visible {
+      outline: 3px solid rgba(11, 94, 215, 0.28);
+      outline-offset: 3px;
+    }
+
+    .community-name {
+      font-size: 17px;
       font-weight: 800;
-      cursor: pointer;
+      line-height: 1.45;
     }
 
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 24px;
-      z-index: 1200;
-      transform: translateX(-50%) translateY(20px);
-      opacity: 0;
-      pointer-events: none;
-      background: #111827;
-      color: #fff;
-      padding: 10px 14px;
+    .arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
       border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--blue);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .footer {
+      margin-top: 30px;
+      color: var(--muted);
       font-size: 13px;
-      transition: 0.2s ease;
-      white-space: nowrap;
+      line-height: 1.7;
+      text-align: center;
     }
 
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    @media (max-width: 420px) {
-      .page {
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-
-      h1 {
-        font-size: 22px;
-      }
-
-      .company-card {
-        border-radius: 16px;
-        padding: 15px;
-      }
-
-      .card-actions {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .btn {
-        font-size: 13px;
-        padding-left: 8px;
-        padding-right: 8px;
+    @media (min-width: 720px) {
+      .community-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
   </style>
 </head>
-
 <body>
-  <div class="page">
-    <header>
-      <h1>協賛各社一覧</h1>
-      <p class="lead">
-        会社名・業種・地域・キーワードから協賛企業を探せます。
-      </p>
-    </header>
+  <main class="page">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="eyebrow">コミュニティ別の入口</p>
+      <h1 id="page-title">つながり先を選ぶ</h1>
+      <p class="lead">参加している会や気になるコミュニティから、相談先の一覧へ進めます。</p>
+    </section>
 
-    <div class="search-wrap">
-      <input
-        id="searchInput"
-        class="search-box"
-        type="search"
-        placeholder="会社名・業種・地域・キーワードで検索"
-        oninput="renderCompanies()"
-      />
+    <nav class="community-list" aria-label="コミュニティ一覧">
+      <a class="community-card" href="ginza-six.html">
+        <span class="community-name">守成クラブ銀座シックス</span>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+      <a class="community-card" href="ginza-higashi.html">
+        <span class="community-name">守成クラブ銀座東</span>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+      <a class="community-card" href="ginza.html">
+        <span class="community-name">守成クラブ銀座</span>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+      <a class="community-card" href="miyuki-dori.html">
+        <span class="community-name">守成クラブみゆき通り</span>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+      <a class="community-card" href="ginza-nobunaga.html">
+        <span class="community-name">守成クラブ銀座のぶなが</span>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+      <a class="community-card" href="yabuki-fanclub.html">
+        <span class="community-name">矢吹ファンクラブ</span>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+      <a class="community-card" href="highclass-joshikai.html">
+        <span class="community-name">ハイクラス女子会</span>
+        <span class="arrow" aria-hidden="true">›</span>
+      </a>
+    </nav>
 
-      <div id="categoryButtons" class="category-scroll"></div>
-    </div>
-
-    <main id="companyArea"></main>
-  </div>
-
-  <div id="aiModal" class="modal-backdrop" onclick="onModalBackdropClick(event)">
-    <div class="modal">
-      <h2 id="aiModalTitle" class="modal-title">AIに聞く</h2>
-
-      <p class="modal-desc">
-        LINEの入力欄に、固定コマンドを入れた状態で開きます。
-      </p>
-
-      <div id="aiCommandText" class="command-box">【＊固定 矢吹】</div>
-
-      <p class="modal-note">
-        LINEが開いたら、送信ボタンを押してください。
-      </p>
-
-      <div class="modal-actions">
-        <button class="modal-primary" onclick="openLineWithMessage()">
-          LINEで送信画面を開く
-        </button>
-        <button class="modal-secondary" onclick="closeAiModal()">
-          閉じる
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div id="toast" class="toast">LINEを開きます</div>
-
-  <script>
-    const EIICHI_LINE_OFFICIAL_ID = "@816heedb";
-
-    const companies = [
-      {
-        name: "三味線ファンクラブ矢吹",
-        category: "三味線",
-        area: "全国",
-        keywords: ["三味線", "和楽器", "ライブ", "教室"],
-        description: "三味線を楽しみたい方へ、演奏・学び・交流のきっかけを提供します。",
-        detail: "三味線に興味がある方、和楽器に触れてみたい方、ライブや教室情報を探したい方向けの協賛企業です。",
-        recommend: true,
-        fixedKeyword: "矢吹"
-      },
-      {
-        name: "池田法律相談室",
-        category: "法律",
-        area: "東京",
-        keywords: ["法律", "弁護士", "相談", "企業法務"],
-        description: "法律相談・企業法務・トラブル予防について相談できます。",
-        detail: "契約、トラブル、企業法務、日常の法律相談など、専門家への相談導線として使えます。",
-        recommend: true,
-        fixedKeyword: "池田法律"
-      },
-      {
-        name: "オーダースーツ金井",
-        category: "スーツ",
-        area: "東京",
-        keywords: ["スーツ", "オーダースーツ", "採寸", "仕立て"],
-        description: "装いを整えたい方へ、オーダースーツのご相談を承ります。",
-        detail: "採寸、仕立て、納期、価格帯、用途別のスーツ相談などに対応する想定の協賛企業です。",
-        recommend: true,
-        fixedKeyword: "金井"
-      },
-      {
-        name: "美容西川",
-        category: "美容",
-        area: "東京",
-        keywords: ["美容", "エステ", "肌", "ケア"],
-        description: "美容・肌ケア・身だしなみに関する相談先です。",
-        detail: "美容に関心のある方、肌ケアや印象改善を検討している方向けの協賛企業です。",
-        recommend: true,
-        fixedKeyword: "美容西川"
-      },
-      {
-        name: "相続対策なら尾形",
-        category: "相続",
-        area: "東京",
-        keywords: ["相続", "遺言", "資産", "相談"],
-        description: "相続対策・遺言・資産承継について相談できます。",
-        detail: "相続前の準備、遺言、家族間の整理、資産承継の相談導線として使えます。",
-        recommend: true,
-        fixedKeyword: "尾形"
-      },
-      {
-        name: "ワインバー小澤",
-        category: "飲食",
-        area: "銀座",
-        keywords: ["ワイン", "バー", "飲食", "銀座"],
-        description: "ワインと会話を楽しめる飲食店です。",
-        detail: "会食、紹介、交流、軽い接待などに使いやすい飲食系協賛企業です。",
-        recommend: false,
-        fixedKeyword: "小澤"
-      },
-      {
-        name: "高村AIインテグレーション",
-        category: "AI",
-        area: "全国",
-        keywords: ["AI", "業務効率", "ChatGPT", "自動化"],
-        description: "AIを業務の流れに組み込み、効率化と収益化を支援します。",
-        detail: "LINE、Google Sheets、ChatGPT API、業務フロー改善などを組み合わせたAI導入支援です。",
-        recommend: true,
-        fixedKeyword: "高村AI"
-      }
-    ];
-
-    const categories = [
-      "すべて",
-      "三味線",
-      "法律",
-      "スーツ",
-      "美容",
-      "相続",
-      "飲食",
-      "AI"
-    ];
-
-    let activeCategory = "すべて";
-    let currentLineMessage = "＊固定 矢吹";
-
-    function normalizeText(value) {
-      return String(value || "")
-        .toLowerCase()
-        .replace(/\s+/g, "")
-        .replace(/[　]/g, "");
-    }
-
-    function companyMatchesSearch(company, query) {
-      if (!query) return true;
-
-      const target = normalizeText([
-        company.name,
-        company.category,
-        company.area,
-        company.description,
-        company.detail,
-        ...(company.keywords || [])
-      ].join(" "));
-
-      return target.includes(query);
-    }
-
-    function getFilteredCompanies() {
-      const query = normalizeText(document.getElementById("searchInput").value);
-
-      return companies.filter((company) => {
-        const categoryOk =
-          activeCategory === "すべて" || company.category === activeCategory;
-
-        const searchOk = companyMatchesSearch(company, query);
-
-        return categoryOk && searchOk;
-      });
-    }
-
-    function getRecommendedCompanies() {
-      const query = normalizeText(document.getElementById("searchInput").value);
-
-      return companies.filter((company) => {
-        const searchOk = companyMatchesSearch(company, query);
-        return company.recommend && searchOk;
-      });
-    }
-
-    function renderCategoryButtons() {
-      const wrap = document.getElementById("categoryButtons");
-
-      wrap.innerHTML = categories.map((category) => {
-        const active = category === activeCategory ? "active" : "";
-
-        return `
-          <button
-            class="cat-btn ${active}"
-            onclick="setCategory('${escapeHtml(category)}')"
-          >
-            ${escapeHtml(category)}
-          </button>
-        `;
-      }).join("");
-    }
-
-    function setCategory(category) {
-      activeCategory = category;
-      renderCompanies();
-    }
-
-    function renderCompanies() {
-      renderCategoryButtons();
-
-      const area = document.getElementById("companyArea");
-      const filtered = getFilteredCompanies();
-      const recommended = getRecommendedCompanies();
-
-      let html = "";
-
-      if (activeCategory !== "すべて") {
-        html += renderSection(
-          activeCategory,
-          filtered,
-          `${activeCategory}カテゴリ`
-        );
-
-        const recommendedExceptCurrent = recommended.filter(
-          (company) => company.category !== activeCategory
-        );
-
-        html += renderSection(
-          "おすすめ",
-          recommendedExceptCurrent,
-          "その他のおすすめ"
-        );
-      } else {
-        html += renderSection("おすすめ", recommended, "本日のおすすめ");
-        html += renderSection("すべての協賛企業", filtered, "全件");
-      }
-
-      area.innerHTML = html;
-    }
-
-    function renderSection(title, list, label) {
-      if (!list || list.length === 0) {
-        if (title === "おすすめ") return "";
-
-        return `
-          <section class="section">
-            <h2 class="section-title">
-              ${escapeHtml(title)}
-              <span class="section-count">0件</span>
-            </h2>
-            <div class="empty">該当する協賛企業がありません。</div>
-          </section>
-        `;
-      }
-
-      return `
-        <section class="section">
-          <h2 class="section-title">
-            ${escapeHtml(title)}
-            <span class="section-count">${escapeHtml(label)}・${list.length}件</span>
-          </h2>
-          <div class="card-list">
-            ${list.map(renderCompanyCard).join("")}
-          </div>
-        </section>
-      `;
-    }
-
-    function renderCompanyCard(company) {
-      const chips = [
-        company.category,
-        company.area,
-        ...(company.keywords || []).slice(0, 4)
-      ];
-
-      return `
-        <article class="company-card">
-          <div class="company-head">
-            <div class="company-name">${escapeHtml(company.name)}</div>
-            ${company.recommend ? `<span class="badge">おすすめ</span>` : ""}
-          </div>
-
-          <div class="chips">
-            ${chips.map((chip) => `<span class="chip">${escapeHtml(chip)}</span>`).join("")}
-          </div>
-
-          <p class="desc">${escapeHtml(company.description)}</p>
-
-          <div class="card-actions">
-            <button class="btn btn-detail" onclick="toggleDetailFromButton(this)">
-              詳しく見る
-            </button>
-            <button
-              class="btn btn-ai"
-              onclick="openAiModal('${escapeAttr(company.name)}', '${escapeAttr(company.fixedKeyword)}')"
-            >
-              AIに聞く
-            </button>
-          </div>
-
-          <details>
-            <summary>詳細情報</summary>
-            <div class="detail-body">
-              ${escapeHtml(company.detail)}
-            </div>
-          </details>
-        </article>
-      `;
-    }
-
-    function toggleDetailFromButton(button) {
-      const card = button.closest(".company-card");
-      const detail = card.querySelector("details");
-
-      detail.open = !detail.open;
-    }
-
-    function openAiModal(companyName, fixedKeyword) {
-      const modal = document.getElementById("aiModal");
-      const title = document.getElementById("aiModalTitle");
-      const commandText = document.getElementById("aiCommandText");
-
-      const commandOnly = "＊固定 " + fixedKeyword;
-
-      const displayText =
-        "【" + commandOnly + "】" +
-        "\nこれで会話テーマを固定します。" +
-        "\n\nテーマを解除するには、" +
-        "\n【解除する】" +
-        "\nと入れてください";
-
-      currentLineMessage = commandOnly;
-
-      title.textContent = companyName + "についてAIに聞く";
-      commandText.textContent = displayText;
-
-      modal.classList.add("show");
-    }
-
-    function closeAiModal() {
-      const modal = document.getElementById("aiModal");
-      modal.classList.remove("show");
-    }
-
-    function onModalBackdropClick(event) {
-      if (event.target.id === "aiModal") {
-        closeAiModal();
-      }
-    }
-
-    function openLineWithMessage() {
-      const lineUrl =
-        "https://line.me/R/oaMessage/" +
-        encodeURIComponent(EIICHI_LINE_OFFICIAL_ID) +
-        "/?" +
-        encodeURIComponent(currentLineMessage);
-
-      showToast("LINEを開きます");
-
-      setTimeout(() => {
-        window.location.href = lineUrl;
-      }, 150);
-    }
-
-    function showToast(message) {
-      const toast = document.getElementById("toast");
-      toast.textContent = message;
-      toast.classList.add("show");
-
-      setTimeout(() => {
-        toast.classList.remove("show");
-      }, 1600);
-    }
-
-    function escapeHtml(value) {
-      return String(value || "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-    }
-
-    function escapeAttr(value) {
-      return escapeHtml(value).replace(/`/g, "&#096;");
-    }
-
-    renderCompanies();
-  </script>
+    <p class="footer">各コミュニティのページから、相談先やLINEの栄一ツールへ進めます。</p>
+  </main>
 </body>
 </html>

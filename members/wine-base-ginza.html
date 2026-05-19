@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ザ・ワインベース銀座</title>
+  <style>
+    :root {
+      --bg: #f4f8fc;
+      --card: #fff;
+      --text: #0f172a;
+      --muted: #526070;
+      --line: #d9e4ef;
+      --blue: #0b5ed7;
+      --blue-dark: #073f93;
+      --soft-blue: #eaf3ff;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+
+    .page {
+      width: min(100%, 820px);
+      margin: 0 auto;
+      padding: 28px 16px 56px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      margin-bottom: 20px;
+      color: var(--blue-dark);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .panel,
+    .video-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .profile,
+    .links,
+    .content {
+      padding: 22px;
+    }
+
+    .genre {
+      width: fit-content;
+      margin: 0 0 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--blue-dark);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 8vw, 48px);
+      line-height: 1.14;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    p {
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .sub-name {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .meta-row {
+      display: grid;
+      gap: 3px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #f8fbff;
+    }
+
+    .meta-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .meta-value {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .video-panel {
+      margin-top: 18px;
+      padding: 22px;
+      border: 2px solid rgba(11, 94, 215, 0.18);
+      background: linear-gradient(180deg, #fff 0%, #f3f8ff 100%);
+    }
+
+    .section-label {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .video-placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 190px;
+      margin-top: 16px;
+      border: 1px dashed #b8c9dc;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .intro-video {
+      width: 100%;
+      max-width: 420px;
+      display: block;
+      margin: 20px auto 0;
+      border-radius: 18px;
+      background: #000;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .links,
+    .content {
+      margin-top: 18px;
+    }
+
+    .link-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .support-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 50px;
+      padding: 13px 15px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .support-link::after {
+      content: "›";
+      color: var(--blue);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .item-list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .item-list li {
+      padding: 11px 12px;
+      border-radius: 8px;
+      background: #f8fbff;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (min-width: 720px) {
+      .link-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="../ginza-six.html">‹ メンバー一覧へ戻る</a>
+
+    <section class="panel profile">
+      <p class="genre">飲食 / ワインバー</p>
+      <h1>ザ・ワインベース銀座</h1>
+      <p class="sub-name">THE WINEBASE銀座 / THE WINE BASE</p>
+      <p>
+        銀座駅近くにあるワインバー「THE WINEBASE銀座」。
+      </p>
+      <p>
+        “世界を旅するワインバー”をコンセプトに、ワインに詳しい方はもちろん、これからワインを楽しみたい方にも入りやすい雰囲気のお店です。
+      </p>
+      <p>
+        その日の気分や好みに合わせて一杯を選びながら、銀座で気軽にワインと料理を楽しめます。
+      </p>
+
+      <div class="meta" aria-label="基本情報">
+        <div class="meta-row">
+          <span class="meta-label">住所</span>
+          <span class="meta-value">東京都中央区銀座4-3-5 ハトリビル3F</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">電話</span>
+          <span class="meta-value">03-3564-7218</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">営業時間</span>
+          <span class="meta-value">平日：18:00〜翌3:00<br>土日祝：18:00〜24:00</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">定休日</span>
+          <span class="meta-value">毎月第2日曜日、1月1日</span>
+        </div>
+      </div>
+      <p class="note">営業時間・定休日は変更される場合があります。最新情報は公式Instagramまたは店舗へご確認ください。</p>
+    </section>
+
+    <section class="video-panel">
+      <p class="section-label">紹介動画</p>
+      <h2>ザ・ワインベース銀座を動画で見る</h2>
+      <p>
+        ワインに詳しくなくても入りやすい銀座のワインバーとして、THE WINEBASE銀座の雰囲気を短い動画でご覧いただけます。
+      </p>
+      <video controls playsinline preload="metadata" class="intro-video">
+        <source src="../videos/wine-base-intro.mp4" type="video/mp4">
+        お使いのブラウザは動画再生に対応していません。
+      </video>
+    </section>
+
+    <section class="panel links">
+      <h2>関連リンク</h2>
+      <div class="link-grid">
+        <a class="support-link" href="https://www.instagram.com/thewinebase_ginza/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a class="support-link" href="https://tabelog.com/tokyo/A1301/A130101/13268514/" target="_blank" rel="noopener noreferrer">食べログ</a>
+        <a class="support-link" href="https://r.gnavi.co.jp/4wf45uuv0000/" target="_blank" rel="noopener noreferrer">ぐるなび</a>
+      </div>
+    </section>
+
+    <section class="panel content">
+      <h2>対応できること</h2>
+      <ul class="item-list">
+        <li>ワインバー利用</li>
+        <li>グラスワイン・ボトルワインの相談</li>
+        <li>ワイン初心者向けの一杯選び</li>
+        <li>食事とワインの組み合わせ</li>
+        <li>銀座での二次会・会食・少人数利用</li>
+      </ul>
+    </section>
+
+    <section class="panel content">
+      <h2>こんな方に向いています</h2>
+      <ul class="item-list">
+        <li>銀座で落ち着いてワインを楽しみたい方</li>
+        <li>ワインに詳しくないけれど、相談しながら選びたい方</li>
+        <li>食事と一緒にワインを楽しみたい方</li>
+        <li>仕事帰りや交流会後に立ち寄れるお店を探している方</li>
+        <li>いつもと少し違う銀座の夜を楽しみたい方</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
