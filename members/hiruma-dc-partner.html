@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="株式会社DCパートナー 比留間将弘さんの紹介ページです。企業型確定拠出年金（DC）、退職金制度、福利厚生制度、経営者向け資産形成などの相談内容を整理できます。" />
+  <title>比留間 将弘｜企業型DC・退職金制度相談｜守成クラブ銀座シックス</title>
+  <style>
+    :root {
+      --bg: #f4f8fc;
+      --card: #fff;
+      --text: #0f172a;
+      --muted: #526070;
+      --line: #d9e4ef;
+      --blue: #0b5ed7;
+      --blue-dark: #073f93;
+      --soft-blue: #eaf3ff;
+      --indigo: #3346a3;
+      --soft-indigo: #eef1ff;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+
+    .page {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px 16px 56px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      margin-bottom: 20px;
+      color: var(--blue-dark);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .panel,
+    .video-panel {
+      min-width: 0;
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      margin-top: 0;
+      padding: 24px;
+      border-top: 4px solid var(--indigo);
+    }
+
+    .section,
+    .cta,
+    .video-panel {
+      padding: 22px;
+    }
+
+    .eyebrow,
+    .section-label {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    li,
+    a,
+    span {
+      overflow-wrap: anywhere;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 8vw, 48px);
+      line-height: 1.14;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      line-height: 1.45;
+      letter-spacing: 0;
+    }
+
+    p {
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .lead {
+      margin: 14px 0 0;
+      color: var(--text);
+      font-size: clamp(19px, 5vw, 28px);
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .subcopy {
+      max-width: 760px;
+      margin: 14px 0 0;
+    }
+
+    .name-meta {
+      display: grid;
+      gap: 6px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tag-list li {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--blue-dark);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .hero-actions,
+    .cta-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 13px 16px;
+      border: 1px solid var(--blue);
+      border-radius: 8px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.4;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: #fff;
+      color: var(--blue-dark);
+    }
+
+    .video-panel {
+      border: 2px solid rgba(11, 94, 215, 0.18);
+      background: linear-gradient(180deg, #fff 0%, #f3f8ff 100%);
+    }
+
+    .video-placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 190px;
+      margin-top: 16px;
+      border: 1px dashed #b8c9dc;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+      font-weight: 800;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .card,
+    .meta-row {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fbff;
+    }
+
+    .card {
+      padding: 16px;
+    }
+
+    .card p {
+      margin: 0;
+    }
+
+    .feature {
+      border-color: rgba(51, 70, 163, 0.2);
+      background: linear-gradient(180deg, #fff 0%, var(--soft-indigo) 100%);
+    }
+
+    .item-list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .item-list li {
+      padding: 11px 12px;
+      border-radius: 8px;
+      background: #f8fbff;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .meta-row {
+      display: grid;
+      gap: 3px;
+      padding: 12px;
+    }
+
+    .meta-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .meta-value {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .cta {
+      border: 2px solid rgba(11, 94, 215, 0.18);
+      background: linear-gradient(180deg, #fff 0%, #f3f8ff 100%);
+    }
+
+    .note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (min-width: 760px) {
+      .hero-actions,
+      .cta-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="../ginza-six.html">‹ メンバー一覧へ戻る</a>
+
+    <section class="panel hero" aria-labelledby="page-title">
+      <p class="eyebrow">相談 / 企業型DC / 退職金制度 / 福利厚生</p>
+      <h1 id="page-title">比留間 将弘｜企業型DC・退職金制度相談</h1>
+      <div class="name-meta">
+        <span>Masahiro Hiruma</span>
+        <span>株式会社DCパートナー 代表取締役</span>
+        <span>DCアドバイザー / 防災士</span>
+      </div>
+      <p class="lead">会社の将来と社員の将来を支える、企業型確定拠出年金・退職金制度の相談先です。</p>
+      <p class="subcopy">
+        企業型確定拠出年金（DC）は、役員・従業員の将来資産形成や、会社の福利厚生制度づくりに関わる重要な制度です。
+        株式会社DCパートナーでは、制度の基本理解から、導入時の検討ポイント、運用後の社員説明・投資教育まで、経営者が判断しやすい形で情報整理を支援します。
+      </p>
+      <ul class="tag-list" aria-label="相談タグ">
+        <li>相談</li>
+        <li>企業型DC</li>
+        <li>退職金制度</li>
+        <li>福利厚生</li>
+        <li>投資教育</li>
+        <li>経営者相談</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="button" href="https://lin.ee/7A1qL57" target="_blank" rel="noopener noreferrer">企業型DCについて相談する</a>
+        <a class="button secondary" href="#consultation">相談内容を見る</a>
+      </div>
+    </section>
+
+    <section class="video-panel">
+      <p class="section-label">紹介動画</p>
+      <h2>紹介動画</h2>
+      <p>企業型DCや退職金制度の基本を、経営者にも分かりやすく紹介する動画を掲載予定です。</p>
+      <div class="video-placeholder">紹介動画は準備中です</div>
+      <!-- 動画ファイル候補: ../videos/hiruma-dc-partner-intro.mp4 -->
+    </section>
+
+    <section class="panel section" id="consultation">
+      <p class="section-label">相談できること</p>
+      <h2>制度導入の前に、判断材料を整理できます。</h2>
+      <div class="card-grid">
+        <article class="card"><h3>企業型DCの導入相談</h3><p>企業型確定拠出年金の仕組み、導入時の確認事項、社内説明の流れを整理します。</p></article>
+        <article class="card"><h3>退職金制度・福利厚生の見直し</h3><p>会社の規模や人材定着の課題に合わせて、制度設計の方向性を確認できます。</p></article>
+        <article class="card"><h3>経営者・役員向けの将来資産形成</h3><p>役員報酬や将来資金の設計について、制度の選択肢を整理します。</p></article>
+        <article class="card"><h3>社員向け説明・投資教育</h3><p>導入後に社員が制度を理解しやすいよう、説明や投資教育まで視野に入れて相談できます。</p></article>
+        <article class="card"><h3>中小企業に合う制度設計</h3><p>会社の状況、人数、運用体制を踏まえ、無理のない導入検討を支援します。</p></article>
+        <article class="card"><h3>iDeCo・企業型DCの違い</h3><p>個人型と企業型の違い、税制優遇措置の基本理解を整理できます。</p></article>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">こんな方に</p>
+      <h2>退職金・福利厚生・将来資金の制度を考えたい経営者へ。</h2>
+      <ul class="item-list">
+        <li>会社に退職金制度を整えたい経営者</li>
+        <li>役員報酬や将来資金の設計を考えたい方</li>
+        <li>福利厚生を強化して採用・定着につなげたい企業</li>
+        <li>企業型DCに興味はあるが、仕組みがよく分からない方</li>
+        <li>社員に資産形成の機会を提供したい企業</li>
+        <li>節税や社会保険料との関係を整理して相談したい方</li>
+      </ul>
+    </section>
+
+    <section class="panel section feature">
+      <p class="section-label">特徴</p>
+      <h2>株式会社DCパートナーの特徴</h2>
+      <div class="card-grid">
+        <article class="card"><h3>企業型DC領域の専門相談</h3><p>企業型DC・確定拠出年金の導入検討に関する情報整理を支援します。</p></article>
+        <article class="card"><h3>中小企業経営者にも分かりやすい説明</h3><p>制度の専門用語を整理し、経営判断に必要なポイントを確認しやすくします。</p></article>
+        <article class="card"><h3>導入前の判断材料を整理</h3><p>会社の状況、加入者の条件、制度設計によって変わる点を事前に確認します。</p></article>
+        <article class="card"><h3>社員説明・投資教育まで視野に</h3><p>制度を入れて終わりにせず、社員が理解しやすい運用後の説明も重視します。</p></article>
+        <article class="card"><h3>協会関連の活動実績</h3><p>確定拠出年金推進協会の認定アドバイザー、埼玉支部長としての公開情報があります。</p></article>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">制度の基本</p>
+      <h2>企業型確定拠出年金（DC）の主なメリット</h2>
+      <p>
+        企業型DCには、掛金の所得控除・運用益の非課税・受取時の税制優遇など、制度上のメリットがあります。
+        ただし、具体的な効果は会社の状況・加入者の条件・制度設計によって変わるため、導入前に専門家へ確認することが重要です。
+      </p>
+      <ul class="item-list">
+        <li>掛金が全額所得控除の対象となる場合があります</li>
+        <li>運用益が非課税で再投資されます</li>
+        <li>受け取るときにも税制優遇措置があります</li>
+        <li>会社の福利厚生制度として活用できます</li>
+        <li>社員の資産形成支援につながります</li>
+      </ul>
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">基本情報</p>
+      <h2>株式会社DCパートナー</h2>
+      <div class="meta" aria-label="基本情報">
+        <div class="meta-row"><span class="meta-label">担当者</span><span class="meta-value">比留間 将弘<br>Masahiro Hiruma</span></div>
+        <div class="meta-row"><span class="meta-label">肩書き</span><span class="meta-value">代表取締役 / DCアドバイザー / 防災士</span></div>
+        <div class="meta-row"><span class="meta-label">所在地</span><span class="meta-value">〒340-0831<br>埼玉県八潮市南後谷345-1-1006</span></div>
+        <div class="meta-row"><span class="meta-label">電話</span><span class="meta-value">090-2902-6324<br>名刺記載・要確認</span></div>
+        <div class="meta-row"><span class="meta-label">メール</span><span class="meta-value">dc.hiruma418@gmail.com<br>名刺記載・要確認</span></div>
+        <div class="meta-row"><span class="meta-label">相談領域</span><span class="meta-value">企業型DC、退職金制度、福利厚生制度、社員向け投資教育</span></div>
+      </div>
+      <p class="note">電話・メールは名刺記載情報です。公開表示・連絡方法は本人確認後の運用を前提にしています。</p>
+    </section>
+
+    <section class="panel cta">
+      <p class="section-label">相談導線</p>
+      <h2>企業型DC・退職金制度・福利厚生制度について、まず相談内容を整理しませんか。</h2>
+      <p>
+        制度の導入や見直しは、会社の状況、従業員数、報酬設計、既存の退職金制度によって確認すべき点が変わります。
+        まずは相談内容を整理してからおつなぎします。
+      </p>
+      <div class="cta-actions">
+        <a class="button" href="https://lin.ee/7A1qL57" target="_blank" rel="noopener noreferrer">企業型DCについて相談する</a>
+        <a class="button secondary" href="https://lin.ee/7A1qL57" target="_blank" rel="noopener noreferrer">紹介・相談について確認する</a>
+      </div>
+      <p class="note">税制・投資・年金制度に関する情報は、制度変更や個別条件によって内容が変わる場合があります。具体的な導入判断や税務上の取り扱いについては、必要に応じて専門家へ確認してください。</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="東陽実業株式会社／東陽中小企業診断士事務所の矢野惠一さんの紹介ページです。海外販路開拓、中国ビジネス、製造業支援、組織活性化など、中小企業の経営相談に対応します。矢野恵一さんをお探しの方にも。" />
+  <title>矢野惠一｜経営相談・海外販路開拓・中国ビジネス支援｜守成クラブ銀座シックス</title>
+  <style>
+    :root {
+      --bg: #f4f8fc;
+      --card: #fff;
+      --text: #0f172a;
+      --muted: #526070;
+      --line: #d9e4ef;
+      --blue: #0b5ed7;
+      --blue-dark: #073f93;
+      --soft-blue: #eaf3ff;
+      --green: #17815f;
+      --soft-green: #eaf8f2;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+
+    .page {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px 16px 56px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      margin-bottom: 20px;
+      color: var(--blue-dark);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .panel,
+    .video-panel {
+      min-width: 0;
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      margin-top: 0;
+      padding: 24px;
+      border-top: 4px solid var(--green);
+    }
+
+    .section,
+    .cta,
+    .video-panel {
+      padding: 22px;
+    }
+
+    .eyebrow,
+    .section-label {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    li,
+    a,
+    span {
+      overflow-wrap: anywhere;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 8vw, 48px);
+      line-height: 1.14;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      line-height: 1.45;
+      letter-spacing: 0;
+    }
+
+    p {
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .lead {
+      margin: 14px 0 0;
+      color: var(--text);
+      font-size: clamp(19px, 5vw, 28px);
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .subcopy {
+      max-width: 760px;
+      margin: 14px 0 0;
+    }
+
+    .name-meta {
+      display: grid;
+      gap: 6px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tag-list li {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--blue-dark);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .hero-actions,
+    .cta-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 13px 16px;
+      border: 1px solid var(--blue);
+      border-radius: 8px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.4;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: #fff;
+      color: var(--blue-dark);
+    }
+
+    .video-panel {
+      border: 2px solid rgba(11, 94, 215, 0.18);
+      background: linear-gradient(180deg, #fff 0%, #f3f8ff 100%);
+    }
+
+    .video-placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 190px;
+      margin-top: 16px;
+      border: 1px dashed #b8c9dc;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+      font-weight: 800;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .card,
+    .meta-row {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fbff;
+    }
+
+    .card {
+      padding: 16px;
+    }
+
+    .card p {
+      margin: 0;
+    }
+
+    .feature {
+      border-color: rgba(23, 129, 95, 0.22);
+      background: linear-gradient(180deg, #fff 0%, var(--soft-green) 100%);
+    }
+
+    .item-list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .item-list li {
+      padding: 11px 12px;
+      border-radius: 8px;
+      background: #f8fbff;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .meta-row {
+      display: grid;
+      gap: 3px;
+      padding: 12px;
+    }
+
+    .meta-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .meta-value {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .cta {
+      border: 2px solid rgba(11, 94, 215, 0.18);
+      background: linear-gradient(180deg, #fff 0%, #f3f8ff 100%);
+    }
+
+    .note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (min-width: 760px) {
+      .hero-actions,
+      .cta-actions {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <a class="back-link" href="../ginza-six.html">‹ メンバー一覧へ戻る</a>
+
+    <section class="panel hero" aria-labelledby="page-title">
+      <p class="eyebrow">相談 / 経営相談 / 海外販路 / 中国ビジネス</p>
+      <h1 id="page-title">矢野惠一｜経営相談・海外販路開拓・中国ビジネス支援</h1>
+      <div class="name-meta">
+        <span>東陽実業株式会社 代表取締役</span>
+        <span>東陽中小企業診断士事務所 代表</span>
+        <span>中小企業診断士 / 認定経営コンサルタント / 認定経営革新等支援機関（名刺記載）</span>
+      </div>
+      <p class="lead">中小企業の販路開拓、海外展開、中国ビジネス、組織活性化を相談できる経営支援の専門家です。</p>
+      <p class="subcopy">
+        商社での衣料品取引、中国駐在、製造業の経営、独立後の販売代理・販路開拓支援の経験をもとに、現場感のある相談ができます。
+      </p>
+      <ul class="tag-list" aria-label="相談タグ">
+        <li>相談</li>
+        <li>経営相談</li>
+        <li>海外販路</li>
+        <li>中国ビジネス</li>
+        <li>中小企業診断士</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="button" href="https://lin.ee/7A1qL57" target="_blank" rel="noopener noreferrer">紹介・相談について確認する</a>
+        <a class="button secondary" href="#consultation">相談内容を見る</a>
+      </div>
+    </section>
+
+    <section class="video-panel">
+      <p class="section-label">紹介動画</p>
+      <h2>矢野惠一さんの紹介動画</h2>
+      <p>海外販路開拓・中国ビジネス・経営相談の考え方を紹介する動画を掲載予定です。</p>
+      <div class="video-placeholder">紹介動画は準備中です</div>
+      <!-- 動画ファイル候補: ../videos/yano-keiichi-intro.mp4 -->
+    </section>
+
+    <section class="panel section" id="consultation">
+      <p class="section-label">主な相談内容</p>
+      <h2>こんな相談ができます</h2>
+      <div class="card-grid">
+        <article class="card"><h3>海外に商品を売りたい</h3><p>日本の商品・技術・製品を海外市場へ広げたい事業者向けに、販路や進め方を整理します。</p></article>
+        <article class="card"><h3>海外から商品を仕入れたい</h3><p>中国・台湾・香港などを含む海外取引について、商習慣や取引の注意点を相談できます。</p></article>
+        <article class="card"><h3>売り先を増やしたい</h3><p>販売代理、販路開拓、営業戦略など、実際の売り先づくりに向けた相談ができます。</p></article>
+        <article class="card"><h3>会社を元気にしたい</h3><p>組織活性化、社員を巻き込む改善活動、経営の現場支援について一緒に考えます。</p></article>
+        <article class="card"><h3>中国ビジネスの相談</h3><p>中国駐在経験を活かし、現実的な商習慣・取引・現地感覚を踏まえて相談できます。</p></article>
+      </div>
+    </section>
+
+    <section class="panel section feature">
+      <p class="section-label">強み</p>
+      <h2>矢野さんの強み</h2>
+      <p>
+        矢野惠一さんは、衣料品関連の営業経験を長く持ち、中国にも通算17年間駐在。
+        中国では大規模工場の経営経験もあり、現場・営業・経営の両面から中小企業を支援できる点が特徴です。
+      </p>
+      <p>
+        机上の助言だけでなく、販路開拓や取引先づくりなど、実際の売上につながる支援を得意としています。
+        製造と営業の間にある情報のずれをつなぎ、会社の良いところを見つけて言葉にする支援にも強みがあります。
+      </p>
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">経歴要約</p>
+      <h2>主な経歴</h2>
+      <ul class="item-list">
+        <li>1983年：商社に入社し、繊維本部で衣料品取引に従事</li>
+        <li>1980年代〜2010年代にかけて複数回、中国に駐在</li>
+        <li>中国で大規模工場の経営経験あり</li>
+        <li>2016年：独立起業</li>
+        <li>日本・中国間の製造業、特に繊維関連の販売代理・販路開拓支援に従事</li>
+        <li>2024年：中小企業診断士登録</li>
+      </ul>
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">基本情報</p>
+      <h2>東陽実業株式会社 / 東陽中小企業診断士事務所</h2>
+      <div class="meta" aria-label="基本情報">
+        <div class="meta-row"><span class="meta-label">氏名</span><span class="meta-value">矢野 惠一（やの けいいち）<br>表記ゆれ: 矢野恵一</span></div>
+        <div class="meta-row"><span class="meta-label">会社・事務所</span><span class="meta-value">東陽実業株式会社<br>東陽中小企業診断士事務所</span></div>
+        <div class="meta-row"><span class="meta-label">役職</span><span class="meta-value">代表取締役 / 代表</span></div>
+        <div class="meta-row"><span class="meta-label">所属</span><span class="meta-value">守成クラブ銀座シックス</span></div>
+        <div class="meta-row"><span class="meta-label">所在地</span><span class="meta-value">〒104-0032<br>東京都中央区八丁堀四丁目12番20号 第一SSビル6階6D室</span></div>
+        <div class="meta-row"><span class="meta-label">電話 / FAX</span><span class="meta-value">03-6225-2866<br>名刺記載情報</span></div>
+        <div class="meta-row"><span class="meta-label">連絡先の扱い</span><span class="meta-value">携帯電話・メールは本人掲載許可を確認後に掲載</span></div>
+        <div class="meta-row"><span class="meta-label">相談領域</span><span class="meta-value">経営相談、海外販路開拓、中国ビジネス、製造業支援、組織活性化</span></div>
+      </div>
+      <!-- 名刺由来の未公開連絡先。公開表示は本人掲載許可確認後に判断:
+        携帯電話（日本）: 090-2677-5148
+        中国携帯: 86-187-2138-3094
+        E-mail: keiichi.yano@ozzio.jp
+      -->
+      <p class="note">携帯電話・メール・中国携帯は名刺画像由来のため、公開前に本人掲載許可を確認する前提で非表示にしています。</p>
+    </section>
+
+    <section class="panel cta">
+      <p class="section-label">相談導線</p>
+      <h2>海外販路・中国ビジネス・経営相談をしたい方へ</h2>
+      <p>
+        海外に売りたい、海外から仕入れたい、売り先を増やしたい。
+        そんな事業者の方は、矢野さんに相談できます。
+      </p>
+      <div class="cta-actions">
+        <a class="button" href="https://lin.ee/7A1qL57" target="_blank" rel="noopener noreferrer">相談してみる</a>
+        <a class="button secondary" href="https://lin.ee/7A1qL57" target="_blank" rel="noopener noreferrer">紹介・相談について確認する</a>
+      </div>
+      <p class="note">掲載内容は相談先紹介です。具体的な支援範囲、費用、連絡方法は相談内容に応じて個別に確認します。</p>
+    </section>
+  </main>
+</body>
+</html>

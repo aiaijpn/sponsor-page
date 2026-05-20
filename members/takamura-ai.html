@@ -3,13 +3,425 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AIインテグレーションの高村</title>
+  <title>高村榮一｜AI業務改善・相談導線づくり</title>
   <style>
-    :root { --bg: #f4f8fc; --card: #fff; --text: #0f172a; --muted: #526070; --line: #d9e4ef; --blue: #0b5ed7; --blue-dark: #073f93; --soft-blue: #eaf3ff; --shadow: 0 16px 40px rgba(15, 23, 42, 0.08); }
-    * { box-sizing: border-box; } body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; background: linear-gradient(180deg, #fff 0%, var(--bg) 100%); color: var(--text); }
-    .page { width: min(100%, 820px); margin: 0 auto; padding: 28px 16px 56px; } .back-link { display: inline-flex; margin-bottom: 20px; color: var(--blue-dark); font-size: 14px; font-weight: 800; text-decoration: none; }
-    .panel, .video-panel { border: 1px solid var(--line); border-radius: 8px; background: var(--card); box-shadow: var(--shadow); } .profile { padding: 22px; } .genre { width: fit-content; margin: 0 0 12px; padding: 6px 10px; border-radius: 999px; background: var(--soft-blue); color: var(--blue-dark); font-size: 12px; font-weight: 800; } h1 { margin: 0; font-size: clamp(30px, 8vw, 48px); line-height: 1.14; letter-spacing: 0; } h2 { margin: 0; font-size: 22px; line-height: 1.35; letter-spacing: 0; } p { color: #334155; font-size: 15px; line-height: 1.85; } .video-panel { margin-top: 18px; padding: 22px; border: 2px solid rgba(11, 94, 215, 0.18); background: linear-gradient(180deg, #fff 0%, #f3f8ff 100%); } .section-label { margin: 0 0 10px; color: var(--blue-dark); font-size: 13px; font-weight: 900; } .video-placeholder { display: grid; place-items: center; min-height: 190px; margin-top: 16px; border: 1px dashed #b8c9dc; border-radius: 8px; background: #fff; color: var(--muted); font-weight: 800; text-align: center; } .links, .content { margin-top: 18px; padding: 20px; } .link-grid { display: grid; gap: 10px; margin-top: 14px; } .support-link { display: flex; align-items: center; justify-content: space-between; min-height: 50px; padding: 13px 15px; border: 1px solid var(--line); border-radius: 8px; color: var(--text); font-size: 15px; font-weight: 800; text-decoration: none; } .support-link::after { content: "›"; color: var(--blue); font-size: 20px; font-weight: 900; } @media (min-width: 720px) { .link-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    :root {
+      --bg: #f4f8fc;
+      --card: #fff;
+      --text: #0f172a;
+      --muted: #526070;
+      --line: #d9e4ef;
+      --blue: #0b5ed7;
+      --blue-dark: #073f93;
+      --soft-blue: #eaf3ff;
+      --indigo: #3346a3;
+      --soft-indigo: #eef1ff;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+
+    .page {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px 16px 56px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      margin-bottom: 20px;
+      color: var(--blue-dark);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .panel,
+    .video-panel {
+      min-width: 0;
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      margin-top: 0;
+      padding: 24px;
+      border-top: 4px solid var(--indigo);
+    }
+
+    .section,
+    .cta,
+    .video-panel {
+      padding: 22px;
+    }
+
+    .eyebrow,
+    .section-label {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    li,
+    a,
+    span {
+      overflow-wrap: anywhere;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 8vw, 48px);
+      line-height: 1.14;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      line-height: 1.45;
+      letter-spacing: 0;
+    }
+
+    p {
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .lead {
+      margin: 14px 0 0;
+      color: var(--text);
+      font-size: clamp(19px, 5vw, 28px);
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .subcopy {
+      max-width: 760px;
+      margin: 14px 0 0;
+    }
+
+    .name-meta {
+      display: grid;
+      gap: 6px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tag-list li {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--blue-dark);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .hero-actions,
+    .cta-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 13px 16px;
+      border: 1px solid var(--blue);
+      border-radius: 8px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.4;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: #fff;
+      color: var(--blue-dark);
+    }
+
+    .button.soft {
+      border-color: var(--line);
+      background: #fff;
+      color: var(--text);
+    }
+
+    .video-panel {
+      border: 2px solid rgba(11, 94, 215, 0.18);
+      background: linear-gradient(180deg, #fff 0%, #f3f8ff 100%);
+    }
+
+    .video-placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 190px;
+      margin-top: 16px;
+      border: 1px dashed #b8c9dc;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+      font-weight: 800;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .card,
+    .meta-row {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fbff;
+    }
+
+    .card {
+      padding: 16px;
+    }
+
+    .card p {
+      margin: 0;
+    }
+
+    .feature {
+      border-color: rgba(51, 70, 163, 0.2);
+      background: linear-gradient(180deg, #fff 0%, var(--soft-indigo) 100%);
+    }
+
+    .item-list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .item-list li {
+      padding: 11px 12px;
+      border-radius: 8px;
+      background: #f8fbff;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .meta-row {
+      display: grid;
+      gap: 3px;
+      padding: 12px;
+    }
+
+    .meta-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .meta-value {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .cta {
+      border: 2px solid rgba(11, 94, 215, 0.18);
+      background: linear-gradient(180deg, #fff 0%, #f3f8ff 100%);
+    }
+
+    .note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (min-width: 760px) {
+      .hero-actions {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .cta-actions {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
   </style>
 </head>
-<body><main class="page"><a class="back-link" href="../ginza-six.html">‹ メンバー一覧へ戻る</a><section class="panel profile"><p class="genre">AI・業務効率化</p><h1>AIインテグレーションの高村</h1><p>AI活用、LINE連携、業務の自動化など、まず何から始めるかを相談できます。</p></section><section class="video-panel"><p class="section-label">紹介動画</p><h2>AIインテグレーションの高村の紹介動画</h2><p>導入事例や支援内容を、動画で紹介するためのエリアです。</p><div class="video-placeholder">紹介動画は準備中です</div></section><section class="panel links"><h2>関連リンク</h2><div class="link-grid"><a class="support-link" href="#" aria-disabled="true">公式サイト</a><a class="support-link" href="#" aria-disabled="true">問い合わせ・予約</a><a class="support-link" href="#" aria-disabled="true">SNS</a></div></section><section class="panel content"><h2>対応できること</h2><p>仕事にAIをどう使えるか整理したい方、業務効率化や自動化の入口を考えたい方に向いています。</p></section></main></body>
+<body>
+  <main class="page">
+    <a class="back-link" href="../ginza-six.html">‹ メンバー一覧へ戻る</a>
+
+    <section class="panel hero" aria-labelledby="page-title">
+      <p class="eyebrow">AI・業務効率化 / 相談導線づくり</p>
+      <h1 id="page-title">高村榮一｜AI業務改善・相談導線づくり</h1>
+      <div class="name-meta">
+        <span>助言withChatGPT</span>
+        <span>AIを業務の流れに組み込み、相談・発信・事務作業を軽くする実装支援</span>
+      </div>
+      <p class="lead">ChatGPT、Google Sheets、LINE、HTML、Webアプリを組み合わせて、小さく使える形から整えます。</p>
+      <p class="subcopy">
+        個人事業主・小規模事業者の「相談される導線づくり」と「業務効率化」を支援しています。
+        コウメイ君で考えを整理し、カナメ君で試作やHTML化を進めるような、実務に近いAI活用を相談できます。
+      </p>
+      <ul class="tag-list" aria-label="相談テーマ">
+        <li>ChatGPT活用</li>
+        <li>業務効率化</li>
+        <li>LINE導線</li>
+        <li>Google Sheets</li>
+        <li>HTMLページ</li>
+        <li>15秒動画</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="button" href="https://lin.ee/7A1qL57" target="_blank" rel="noopener noreferrer">AI活用について相談する</a>
+        <a class="button secondary" href="https://lin.ee/7A1qL57" target="_blank" rel="noopener noreferrer">相談導線づくりを相談する</a>
+        <a class="button soft" href="https://lin.ee/7A1qL57" target="_blank" rel="noopener noreferrer">15秒プロモーション動画について相談する</a>
+      </div>
+    </section>
+
+    <section class="video-panel">
+      <p class="section-label">紹介動画</p>
+      <h2>紹介動画</h2>
+      <p>AI活用・相談導線づくり・ショート動画制作の考え方を、短い動画で紹介予定です。</p>
+      <div class="video-placeholder">紹介動画は準備中です</div>
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">こんな方に</p>
+      <h2>AIやWeb導線を、まず小さく仕事に入れてみたい方へ。</h2>
+      <div class="card-grid">
+        <article class="card"><h3>ChatGPTを仕事に使いたい</h3><p>何から始めればよいかわからない段階から、現在の業務に合う使い方を整理します。</p></article>
+        <article class="card"><h3>LINEやGoogle Sheetsを活用したい</h3><p>問い合わせ、記録、確認、一覧化など、今ある道具を使った小さな改善を考えます。</p></article>
+        <article class="card"><h3>サービスをわかりやすく伝えたい</h3><p>紹介ページ、相談文、短い動画など、相手に伝わる形へ整理します。</p></article>
+        <article class="card"><h3>相談につながる導線を整えたい</h3><p>名刺、紹介文、Webページ、LINEをつなげて、問い合わせ前の不安を減らします。</p></article>
+        <article class="card"><h3>事務作業や投稿を軽くしたい</h3><p>AIを使って文章作成、情報整理、顧客対応の下準備などを効率化します。</p></article>
+        <article class="card"><h3>小さく試して改善したい</h3><p>大きな開発に進む前に、反応を見られるデモや試作から始めます。</p></article>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">できること</p>
+      <h2>栄一が支援できること</h2>
+      <ul class="item-list">
+        <li>ChatGPT活用相談</li>
+        <li>業務フローのAI化設計</li>
+        <li>Google Sheetsを使った簡易データ管理</li>
+        <li>LINE公式アカウントとの導線設計</li>
+        <li>相談発生型HTMLページの作成支援</li>
+        <li>15秒プロモーション動画の構成・台本作成</li>
+        <li>Canva等を使った動画制作フロー整理</li>
+        <li>CodeX / VS Code を使ったWebアプリ試作支援</li>
+        <li>個人事業主向けのAI導入ミニ相談</li>
+      </ul>
+    </section>
+
+    <section class="panel section feature">
+      <p class="section-label">特徴</p>
+      <h2>完璧なシステムより、まず動くデモと相談しやすい導線を。</h2>
+      <div class="card-grid">
+        <article class="card"><h3>小さく試せる形から始める</h3><p>いきなり大規模開発にせず、今ある素材や道具から試せる形を作ります。</p></article>
+        <article class="card"><h3>業務の流れに組み込む</h3><p>AIを単体で使うのではなく、入力、整理、返信、記録などの流れに組み込みます。</p></article>
+        <article class="card"><h3>相談が生まれる導線を重視</h3><p>技術そのものより、誰に何を相談してもらうかを先に整理します。</p></article>
+        <article class="card"><h3>使える試作を優先</h3><p>文章、動画、HTML、LINE導線をまとめて設計し、まず触れる形にします。</p></article>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">相談メニュー案</p>
+      <h2>相談できること</h2>
+      <div class="card-grid">
+        <article class="card"><h3>AI活用ミニ相談</h3><p>ChatGPTを仕事にどう使えるか、現在の業務や悩みをもとに整理します。</p></article>
+        <article class="card"><h3>相談導線ページ相談</h3><p>サービス内容を「相談されやすいページ」に整理します。HTMLページや紹介文の構成も相談できます。</p></article>
+        <article class="card"><h3>15秒プロモーション動画相談</h3><p>サービスの魅力を15〜20秒の短い動画にするため、台本・テロップ・構成を整理します。</p></article>
+        <article class="card"><h3>業務効率化ミニ設計</h3><p>Google Sheets、LINE、AIを使って、手作業を減らす小さな仕組みを検討します。</p></article>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">基本情報</p>
+      <h2>高村榮一</h2>
+      <div class="meta" aria-label="基本情報">
+        <div class="meta-row"><span class="meta-label">名前</span><span class="meta-value">高村榮一</span></div>
+        <div class="meta-row"><span class="meta-label">屋号</span><span class="meta-value">助言withChatGPT</span></div>
+        <div class="meta-row"><span class="meta-label">相談領域</span><span class="meta-value">AI活用、業務効率化、相談導線づくり、HTMLページ制作支援、ショート動画構成</span></div>
+        <div class="meta-row"><span class="meta-label">対応方法</span><span class="meta-value">対面 / オンライン / LINE相談</span></div>
+        <div class="meta-row"><span class="meta-label">主な対象</span><span class="meta-value">個人事業主、小規模事業者、士業、店舗、コミュニティ関係者</span></div>
+        <div class="meta-row"><span class="meta-label">連絡導線</span><span class="meta-value"><a href="https://lin.ee/7A1qL57" target="_blank" rel="noopener noreferrer">LINEで相談する</a></span></div>
+      </div>
+    </section>
+
+    <section class="panel cta">
+      <p class="section-label">相談導線</p>
+      <h2>AI活用や相談導線づくりを、まず小さく相談してみませんか？</h2>
+      <p>
+        いきなり大きなシステムを作る必要はありません。
+        今あるサービス、名刺、紹介文、動画素材、Google Sheetsなどをもとに、小さく使える形から整えていきます。
+      </p>
+      <div class="cta-actions">
+        <a class="button" href="https://lin.ee/7A1qL57" target="_blank" rel="noopener noreferrer">LINEで相談する</a>
+      </div>
+      <p class="note">※掲載内容は、AI活用・業務改善・情報整理の相談案内です。成果や売上を保証するものではありません。</p>
+      <p class="note">※具体的な実装範囲や費用は、相談内容に応じて個別に確認します。</p>
+    </section>
+  </main>
+</body>
 </html>

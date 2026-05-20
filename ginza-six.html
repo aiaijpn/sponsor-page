@@ -39,6 +39,9 @@
     #cat-consulting:checked ~ .member-list li.category-consulting,
     #cat-other:checked ~ .member-list li.category-other { display: block; }
     .member-list a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 54px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--text); font-size: 16px; font-weight: 800; text-decoration: none; }
+    .member-list a > span { display: grid; gap: 3px; min-width: 0; }
+    .member-list strong { font-size: 16px; line-height: 1.4; }
+    .member-list small { color: var(--muted); font-size: 13px; font-weight: 700; line-height: 1.4; }
     .member-list a::after { content: "›"; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; width: 28px; height: 28px; border-radius: 999px; background: var(--soft-blue); color: var(--blue); font-size: 18px; }
     .member-list a:focus-visible { outline: 3px solid rgba(11, 94, 215, 0.28); outline-offset: 3px; }
   </style>
@@ -76,13 +79,15 @@
         <label for="cat-other">その他</label>
       </div>
       <ul class="member-list">
-        <li class="category-consulting"><a href="members/ikeda-legal.html">池田法律相談室</a></li>
+        <li class="category-consulting"><a href="members/ikeda-law.html"><span><strong>池田 龍吾</strong><small>法律相談</small></span></a></li>
+        <li class="category-consulting"><a href="members/hiruma-dc-partner.html"><span><strong>比留間 将弘｜企業型DC・退職金制度相談</strong><small>企業型確定拠出年金（DC）や退職金制度、福利厚生制度の導入・見直しについて相談できる窓口です。</small></span></a></li>
         <li class="category-beauty-fashion"><a href="members/kanai-suits.html">オーダースーツの金井</a></li>
-        <li class="category-beauty-fashion"><a href="members/nishikawa-beauty.html">西川ヘレン美容医療院</a></li>
-        <li class="category-consulting"><a href="members/ogata-souzoku.html">相続対策なら尾形</a></li>
+        <li class="category-beauty-fashion"><a href="members/nishikawa-beauty.html"><span><strong>美容西川</strong><small>銀座の美容皮膚科・医療脱毛クリニック。男性VIO脱毛・ヒゲ脱毛・美容医療の相談先。</small></span></a></li>
+        <li class="category-consulting"><a href="members/ogata-souzoku.html"><span><strong>尾形 明夫</strong><small>相続・事業承継のご相談</small></span></a></li>
+        <li class="category-consulting"><a href="members/yano-keiichi.html"><span><strong>矢野惠一｜経営相談・海外販路開拓</strong><small>中国ビジネス・海外販路開拓・製造業支援・組織活性化の相談先です。</small></span></a></li>
         <li class="category-food"><a href="members/wine-base-ginza.html">ザ・ワインベース銀座</a></li>
         <li class="category-other"><a href="members/yabuki-shamisen.html">三味線奏者矢吹</a></li>
-        <li class="category-consulting"><a href="members/takamura-ai.html">AIインテグレーションの高村</a></li>
+        <li class="category-consulting"><a href="members/takamura-ai.html"><span><strong>高村榮一</strong><small>AI業務改善・相談導線づくり</small></span></a></li>
       </ul>
     </section>
   </main>

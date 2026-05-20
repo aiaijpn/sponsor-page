@@ -3,13 +3,436 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>相続対策なら尾形</title>
+  <title>尾形 明夫 | 相続・事業承継相談</title>
   <style>
-    :root { --bg: #f4f8fc; --card: #fff; --text: #0f172a; --muted: #526070; --line: #d9e4ef; --blue: #0b5ed7; --blue-dark: #073f93; --soft-blue: #eaf3ff; --shadow: 0 16px 40px rgba(15, 23, 42, 0.08); }
-    * { box-sizing: border-box; } body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; background: linear-gradient(180deg, #fff 0%, var(--bg) 100%); color: var(--text); }
-    .page { width: min(100%, 820px); margin: 0 auto; padding: 28px 16px 56px; } .back-link { display: inline-flex; margin-bottom: 20px; color: var(--blue-dark); font-size: 14px; font-weight: 800; text-decoration: none; }
-    .panel, .video-panel { border: 1px solid var(--line); border-radius: 8px; background: var(--card); box-shadow: var(--shadow); } .profile { padding: 22px; } .genre { width: fit-content; margin: 0 0 12px; padding: 6px 10px; border-radius: 999px; background: var(--soft-blue); color: var(--blue-dark); font-size: 12px; font-weight: 800; } h1 { margin: 0; font-size: clamp(30px, 8vw, 48px); line-height: 1.14; letter-spacing: 0; } h2 { margin: 0; font-size: 22px; line-height: 1.35; letter-spacing: 0; } p { color: #334155; font-size: 15px; line-height: 1.85; } .video-panel { margin-top: 18px; padding: 22px; border: 2px solid rgba(11, 94, 215, 0.18); background: linear-gradient(180deg, #fff 0%, #f3f8ff 100%); } .section-label { margin: 0 0 10px; color: var(--blue-dark); font-size: 13px; font-weight: 900; } .video-placeholder { display: grid; place-items: center; min-height: 190px; margin-top: 16px; border: 1px dashed #b8c9dc; border-radius: 8px; background: #fff; color: var(--muted); font-weight: 800; text-align: center; } .links, .content { margin-top: 18px; padding: 20px; } .link-grid { display: grid; gap: 10px; margin-top: 14px; } .support-link { display: flex; align-items: center; justify-content: space-between; min-height: 50px; padding: 13px 15px; border: 1px solid var(--line); border-radius: 8px; color: var(--text); font-size: 15px; font-weight: 800; text-decoration: none; } .support-link::after { content: "›"; color: var(--blue); font-size: 20px; font-weight: 900; } @media (min-width: 720px) { .link-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    :root {
+      --bg: #f4f8fc;
+      --card: #fff;
+      --text: #0f172a;
+      --muted: #526070;
+      --line: #d9e4ef;
+      --blue: #0b5ed7;
+      --blue-dark: #073f93;
+      --soft-blue: #eaf3ff;
+      --green: #17815f;
+      --soft-green: #eaf8f2;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px 16px 56px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      margin-bottom: 20px;
+      color: var(--blue-dark);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .panel {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      min-width: 0;
+    }
+
+    .hero {
+      display: grid;
+      gap: 22px;
+      padding: 22px;
+    }
+
+    .hero > * {
+      min-width: 0;
+    }
+
+    .portrait-wrap {
+      display: grid;
+      place-items: center;
+      width: min(100%, 230px);
+      aspect-ratio: 1;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fbff;
+      overflow: hidden;
+    }
+
+    .portrait {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .portrait-fallback {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      height: 100%;
+      color: var(--blue-dark);
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .eyebrow,
+    .section-label {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .genre {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .genre li {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--blue-dark);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 8vw, 48px);
+      line-height: 1.14;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+      word-break: break-all;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+      word-break: break-all;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      line-height: 1.45;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+      word-break: break-all;
+    }
+
+    p {
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.85;
+      overflow-wrap: anywhere;
+      word-break: break-all;
+    }
+
+    .lead {
+      margin: 12px 0 0;
+      color: var(--text);
+      font-size: clamp(19px, 5vw, 28px);
+      font-weight: 900;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+      word-break: break-all;
+    }
+
+    .sub-name {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .section {
+      padding: 22px;
+    }
+
+    .card-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .service-card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fbff;
+      min-width: 0;
+    }
+
+    .service-card p {
+      margin: 0;
+    }
+
+    .item-list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .item-list li {
+      padding: 11px 12px;
+      border-radius: 8px;
+      background: #f8fbff;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+      word-break: break-all;
+    }
+
+    .strength {
+      border-color: rgba(23, 129, 95, 0.22);
+      background: linear-gradient(180deg, #fff 0%, var(--soft-green) 100%);
+    }
+
+    .meta {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .meta-row {
+      display: grid;
+      gap: 3px;
+      padding: 12px;
+      border-radius: 8px;
+      background: #f8fbff;
+    }
+
+    .meta-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .meta-value {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+      word-break: break-all;
+    }
+
+    .cta {
+      padding: 22px;
+      border: 2px solid rgba(11, 94, 215, 0.18);
+      background: linear-gradient(180deg, #fff 0%, #f3f8ff 100%);
+    }
+
+    .cta-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 13px 16px;
+      border: 1px solid var(--blue);
+      border-radius: 8px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+      text-align: center;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+      word-break: break-all;
+    }
+
+    .button.secondary {
+      background: #fff;
+      color: var(--blue-dark);
+    }
+
+    .button.soft {
+      border-color: var(--line);
+      background: #fff;
+      color: var(--text);
+    }
+
+    .note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (min-width: 760px) {
+      .hero {
+        grid-template-columns: 230px minmax(0, 1fr);
+        align-items: center;
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cta-actions {
+        grid-template-columns: 1.3fr 1fr 1fr;
+      }
+
+      .meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
   </style>
 </head>
-<body><main class="page"><a class="back-link" href="../ginza-six.html">‹ メンバー一覧へ戻る</a><section class="panel profile"><p class="genre">相続・家族の整理</p><h1>相続対策なら尾形</h1><p>相続、遺言、資産承継など、家族で話す前の準備にも使えます。</p></section><section class="video-panel"><p class="section-label">紹介動画</p><h2>相続対策なら尾形の紹介動画</h2><p>相続対策の考え方や相談の流れを、動画で紹介するためのエリアです。</p><div class="video-placeholder">紹介動画は準備中です</div></section><section class="panel links"><h2>関連リンク</h2><div class="link-grid"><a class="support-link" href="#" aria-disabled="true">公式サイト</a><a class="support-link" href="#" aria-disabled="true">問い合わせ・予約</a></div></section><section class="panel content"><h2>対応できること</h2><p>相続対策で最初に確認することを知りたい方、家族で話す前に情報を整理したい方に向いています。</p></section></main></body>
+<body>
+  <main class="page">
+    <a class="back-link" href="../ginza-six.html">‹ メンバー一覧へ戻る</a>
+
+    <section class="panel hero" aria-labelledby="page-title">
+      <div class="portrait-wrap">
+        <img class="portrait" src="../assets/members/ogata-akio.jpg" alt="株式会社エイムコンサルティング 尾形明夫さん" onerror="this.style.display='none'; this.nextElementSibling.hidden=false;" />
+        <span class="portrait-fallback" hidden>尾形</span>
+      </div>
+      <div>
+        <p class="eyebrow">相続・事業承継コンサルタント</p>
+        <h1 id="page-title">尾形 明夫</h1>
+        <p class="sub-name">Akio Ogata</p>
+        <p class="sub-name">株式会社 エイムコンサルティング 代表取締役</p>
+        <p class="lead">相続を、家族の争いではなく、未来を整える時間に。</p>
+        <ul class="genre" aria-label="相談ジャンル">
+          <li>相続対策</li>
+          <li>事業承継</li>
+          <li>家族信託</li>
+          <li>認知症対策</li>
+          <li>自社株対策</li>
+          <li>円満な財産承継</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">相談できること</p>
+      <h2>相続・事業承継の不安を、早めに整理する相談窓口です。</h2>
+      <div class="card-grid">
+        <article class="service-card">
+          <h3>相続対策</h3>
+          <p>もめ事がおきない相続対策、分割、納税資金、節税などについて、状況を整理しながら対策を考えます。</p>
+        </article>
+        <article class="service-card">
+          <h3>事業承継</h3>
+          <p>オーナー社長の後継者問題、自社株、借入金、連帯保証など、事業を引き継ぐ前の論点整理を支援します。</p>
+        </article>
+        <article class="service-card">
+          <h3>家族信託</h3>
+          <p>認知症対策、自社株対策、家族に合った信託設計について、必要な準備を一緒に確認します。</p>
+        </article>
+        <article class="service-card">
+          <h3>士業連携</h3>
+          <p>必要に応じて弁護士、税理士、司法書士などの専門家と連携し、課題解決を支援します。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">こんな方に向いています</p>
+      <h2>家族や会社に負担を残さないための事前相談に。</h2>
+      <ul class="item-list">
+        <li>相続でもめたくない方</li>
+        <li>親の財産管理や認知症対策が気になっている方</li>
+        <li>会社や事業を次世代へ引き継ぎたい経営者</li>
+        <li>自社株や不動産の承継で悩んでいる方</li>
+        <li>家族に負担を残したくない方</li>
+      </ul>
+    </section>
+
+    <section class="panel section strength">
+      <p class="section-label">尾形さんの強み</p>
+      <h2>財産・家族・事業を一つの流れとして見ながら、承継の準備を支援します。</h2>
+      <p>
+        尾形さんは、CFP、1級ファイナンシャルプランニング技能士、家族信託コンサルタントとして、相続・事業承継分野の相談に対応しています。
+        中小企業オーナーの事業承継や相続対策では、自社株、財産分割、家族関係、将来の経営体制など、複数の論点を整理することが大切です。
+      </p>
+      <p>
+        必要に応じて士業ネットワークと連携しながら、法律行為や税務申告そのものではなく、相談者が専門家に進む前の整理や対策支援を行います。
+      </p>
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">紹介文</p>
+      <h2>問題が起きる前に、選択肢を残すための相談を。</h2>
+      <p>
+        相続や事業承継は、問題が起きてから動くと選択肢が限られます。
+        尾形さんは、財産・家族・事業の状況を整理しながら、「誰に、何を、どのように引き継ぐか」を一緒に考える相談相手です。
+      </p>
+      <p>
+        相続を争いの話ではなく、家族と事業の未来を整える前向きな準備として進めたい方に向いています。
+      </p>
+    </section>
+
+    <section class="panel cta">
+      <p class="section-label">相談導線</p>
+      <h2>相続・事業承継で気になることがあれば、まずは状況整理から。</h2>
+      <p>家族や会社の事情は一つずつ異なります。早めに相談することで、確認すべき論点や専門家に聞くべきことが見えやすくなります。</p>
+      <div class="cta-actions">
+        <a class="button" href="https://aim-consul.com" target="_blank" rel="noopener noreferrer">相続・事業承継について相談する</a>
+        <a class="button secondary" href="https://aim-consul.com" target="_blank" rel="noopener noreferrer">公式サイトを見る</a>
+        <a class="button soft" href="../member.html">栄一に紹介を相談する</a>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">基本情報</p>
+      <h2>株式会社 エイムコンサルティング</h2>
+      <div class="meta" aria-label="会社情報">
+        <div class="meta-row">
+          <span class="meta-label">所在地</span>
+          <span class="meta-value">〒231-0035<br>神奈川県横浜市中区千歳町1-2 横浜THビル708</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">電話 / FAX</span>
+          <span class="meta-value">TEL 045-315-5180<br>FAX 045-315-5179</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">携帯 / メール</span>
+          <span class="meta-value">090-3314-5294<br><a href="mailto:ak_ogata@aim-consul.com">ak_ogata@aim-consul.com</a></span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">営業時間 / 定休日</span>
+          <span class="meta-value">10:00〜18:30<br>土日祝</span>
+        </div>
+      </div>
+      <p class="note">相談内容によっては、弁護士、税理士、司法書士など各専門家との連携が必要になる場合があります。</p>
+    </section>
+  </main>
+</body>
 </html>

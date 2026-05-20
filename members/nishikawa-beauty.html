@@ -3,13 +3,424 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>西川ヘレン美容医療院</title>
+  <title>美容西川｜銀座の美容皮膚科・医療脱毛相談</title>
   <style>
-    :root { --bg: #f4f8fc; --card: #fff; --text: #0f172a; --muted: #526070; --line: #d9e4ef; --blue: #0b5ed7; --blue-dark: #073f93; --soft-blue: #eaf3ff; --shadow: 0 16px 40px rgba(15, 23, 42, 0.08); }
-    * { box-sizing: border-box; } body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; background: linear-gradient(180deg, #fff 0%, var(--bg) 100%); color: var(--text); }
-    .page { width: min(100%, 820px); margin: 0 auto; padding: 28px 16px 56px; } .back-link { display: inline-flex; margin-bottom: 20px; color: var(--blue-dark); font-size: 14px; font-weight: 800; text-decoration: none; }
-    .panel, .video-panel { border: 1px solid var(--line); border-radius: 8px; background: var(--card); box-shadow: var(--shadow); } .profile { padding: 22px; } .genre { width: fit-content; margin: 0 0 12px; padding: 6px 10px; border-radius: 999px; background: var(--soft-blue); color: var(--blue-dark); font-size: 12px; font-weight: 800; } h1 { margin: 0; font-size: clamp(30px, 8vw, 48px); line-height: 1.14; letter-spacing: 0; } h2 { margin: 0; font-size: 22px; line-height: 1.35; letter-spacing: 0; } p { color: #334155; font-size: 15px; line-height: 1.85; } .video-panel { margin-top: 18px; padding: 22px; border: 2px solid rgba(11, 94, 215, 0.18); background: linear-gradient(180deg, #fff 0%, #f3f8ff 100%); } .section-label { margin: 0 0 10px; color: var(--blue-dark); font-size: 13px; font-weight: 900; } .video-placeholder { display: grid; place-items: center; min-height: 190px; margin-top: 16px; border: 1px dashed #b8c9dc; border-radius: 8px; background: #fff; color: var(--muted); font-weight: 800; text-align: center; } .links, .content { margin-top: 18px; padding: 20px; } .link-grid { display: grid; gap: 10px; margin-top: 14px; } .support-link { display: flex; align-items: center; justify-content: space-between; min-height: 50px; padding: 13px 15px; border: 1px solid var(--line); border-radius: 8px; color: var(--text); font-size: 15px; font-weight: 800; text-decoration: none; } .support-link::after { content: "›"; color: var(--blue); font-size: 20px; font-weight: 900; } @media (min-width: 720px) { .link-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    :root {
+      --bg: #f4f8fc;
+      --card: #fff;
+      --text: #0f172a;
+      --muted: #526070;
+      --line: #d9e4ef;
+      --blue: #0b5ed7;
+      --blue-dark: #073f93;
+      --soft-blue: #eaf3ff;
+      --teal: #0f766e;
+      --soft-teal: #e9fbf7;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+      background: linear-gradient(180deg, #fff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+
+    .page {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 28px 16px 56px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      margin-bottom: 20px;
+      color: var(--blue-dark);
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .panel,
+    .video-panel {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+    }
+
+    .panel,
+    .video-panel {
+      margin-top: 18px;
+    }
+
+    .hero {
+      margin-top: 0;
+      padding: 24px;
+      border-top: 4px solid var(--teal);
+    }
+
+    .section,
+    .links,
+    .content,
+    .cta,
+    .video-panel {
+      padding: 22px;
+    }
+
+    .eyebrow,
+    .section-label {
+      margin: 0 0 10px;
+      color: var(--blue-dark);
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.5;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    li,
+    a,
+    span {
+      overflow-wrap: anywhere;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 8vw, 48px);
+      line-height: 1.14;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      line-height: 1.45;
+      letter-spacing: 0;
+    }
+
+    p {
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.85;
+    }
+
+    .lead {
+      margin: 14px 0 0;
+      color: var(--text);
+      font-size: clamp(19px, 5vw, 28px);
+      font-weight: 900;
+      line-height: 1.45;
+    }
+
+    .subcopy {
+      max-width: 760px;
+      margin: 14px 0 0;
+    }
+
+    .name-meta {
+      display: grid;
+      gap: 6px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tag-list li {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--blue-dark);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .video-panel {
+      border: 2px solid rgba(11, 94, 215, 0.18);
+      background: linear-gradient(180deg, #fff 0%, #f3f8ff 100%);
+    }
+
+    .video-placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 190px;
+      margin-top: 16px;
+      border: 1px dashed #b8c9dc;
+      border-radius: 8px;
+      background: #fff;
+      color: var(--muted);
+      font-weight: 800;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .card-grid,
+    .link-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .card,
+    .meta-row {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #f8fbff;
+    }
+
+    .card {
+      padding: 16px;
+    }
+
+    .card p {
+      margin: 0;
+    }
+
+    .feature {
+      border-color: rgba(15, 118, 110, 0.2);
+      background: linear-gradient(180deg, #fff 0%, var(--soft-teal) 100%);
+    }
+
+    .item-list {
+      display: grid;
+      gap: 9px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .item-list li {
+      padding: 11px 12px;
+      border-radius: 8px;
+      background: #f8fbff;
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .meta-row {
+      display: grid;
+      gap: 3px;
+      padding: 12px;
+    }
+
+    .meta-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .meta-value {
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .cta {
+      border: 2px solid rgba(11, 94, 215, 0.18);
+      background: linear-gradient(180deg, #fff 0%, #f3f8ff 100%);
+    }
+
+    .cta-actions,
+    .hero-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 13px 16px;
+      border: 1px solid var(--blue);
+      border-radius: 8px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 900;
+      line-height: 1.4;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: #fff;
+      color: var(--blue-dark);
+    }
+
+    .button.soft {
+      border-color: var(--line);
+      background: #fff;
+      color: var(--text);
+    }
+
+    .note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (min-width: 760px) {
+      .hero-actions,
+      .cta-actions {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .link-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .meta {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
   </style>
 </head>
-<body><main class="page"><a class="back-link" href="../ginza-six.html">‹ メンバー一覧へ戻る</a><section class="panel profile"><p class="genre">美容・ケア</p><h1>西川ヘレン美容医療院</h1><p>肌、身だしなみ、印象づくりなど、美容の悩みをやわらかく相談できます。</p></section><section class="video-panel"><p class="section-label">紹介動画</p><h2>西川ヘレン美容医療院の紹介動画</h2><p>サービス内容や雰囲気を、動画で紹介するためのエリアです。</p><div class="video-placeholder">紹介動画は準備中です</div></section><section class="panel links"><h2>関連リンク</h2><div class="link-grid"><a class="support-link" href="#" aria-disabled="true">公式サイト</a><a class="support-link" href="#" aria-disabled="true">問い合わせ・予約</a><a class="support-link" href="#" aria-disabled="true">Instagram</a></div></section><section class="panel content"><h2>こんな方に向いています</h2><p>美容医療とエステの違いを知ってから決めたい方、肌や印象づくりについて相談したい方に向いています。</p></section></main></body>
+<body>
+  <main class="page">
+    <a class="back-link" href="../ginza-six.html">‹ メンバー一覧へ戻る</a>
+
+    <section class="panel hero" aria-labelledby="page-title">
+      <p class="eyebrow">美容・ファッション / 美容医療相談</p>
+      <h1 id="page-title">美容西川｜銀座の美容皮膚科・医療脱毛相談</h1>
+      <div class="name-meta">
+        <span>メディエス銀座クリニック CEO・理事</span>
+        <span>西川 秀人 / Hideto Nishikawa</span>
+      </div>
+      <p class="lead">男性VIO脱毛・ヒゲ脱毛・全身脱毛から、美肌・肌悩みまで。</p>
+      <p class="subcopy">
+        銀座で相談できる美容医療クリニックです。性別を問わず、医療脱毛や肌悩みについて、まずは公式情報を確認しながら相談の入口として使えます。
+      </p>
+      <ul class="tag-list" aria-label="相談テーマ">
+        <li>医療脱毛</li>
+        <li>ヒゲ脱毛</li>
+        <li>男性VIO脱毛</li>
+        <li>全身脱毛</li>
+        <li>美肌相談</li>
+        <li>銀座</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="button" href="https://www.medieth.com/" target="_blank" rel="noopener noreferrer">公式サイトを見る</a>
+        <a class="button secondary" href="#consultation">相談内容を見る</a>
+        <a class="button soft" href="../member.html">栄一に相談する</a>
+      </div>
+    </section>
+
+    <section class="video-panel">
+      <p class="section-label">紹介動画</p>
+      <h2>美容西川の紹介動画</h2>
+      <p>現在準備中。美容医療や医療脱毛が初めての方にも、雰囲気が伝わる紹介動画を掲載予定です。</p>
+      <div class="video-placeholder">紹介動画は準備中です</div>
+      <!-- <video class="intro-video" src="../videos/nishikawa-beauty-intro.mp4" controls playsinline preload="metadata"></video> -->
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">こんな方に</p>
+      <h2>脱毛や美容医療を、無理なく相談先から選びたい方へ。</h2>
+      <div class="card-grid">
+        <article class="card"><h3>ヒゲ脱毛・VIO脱毛を検討している</h3><p>男性のヒゲやVIOなど、相談しづらい部位の医療脱毛について情報を整理できます。</p></article>
+        <article class="card"><h3>清潔感や身だしなみを整えたい</h3><p>仕事や日常での印象づくりを含め、無理のない美容医療の選択肢を確認できます。</p></article>
+        <article class="card"><h3>美容クリニックが初めてで不安がある</h3><p>施術内容、通院回数、料金、リスクなど、事前に確認したいことを整理できます。</p></article>
+        <article class="card"><h3>銀座周辺で通いやすい医療脱毛を探している</h3><p>銀座駅・東銀座駅から徒歩圏のクリニックとして、通いやすさを確認できます。</p></article>
+        <article class="card"><h3>男性でも相談しやすい美容医療先を探している</h3><p>男性VIO脱毛・ヒゲ脱毛・全身脱毛など、男性の悩みも相談しやすい導線です。</p></article>
+      </div>
+    </section>
+
+    <section class="panel section feature">
+      <p class="section-label">特徴</p>
+      <h2>メディエス銀座クリニックの特徴</h2>
+      <div class="card-grid">
+        <article class="card"><h3>銀座で長年運営</h3><p>公式サイトでは開院20年目、公開プロフィールでは創業18年の老舗美容皮膚科クリニックとして紹介されています。</p></article>
+        <article class="card"><h3>医療脱毛・美容皮膚科の相談</h3><p>医療脱毛を中心に、ニキビ、ニキビ跡、しみ、ほくろ、たるみなど肌悩みの相談ができます。</p></article>
+        <article class="card"><h3>男性VIO・ヒゲ・全身脱毛にも対応</h3><p>男性の剛毛やデリケートな部位の悩みも、医療脱毛として相談しやすいクリニックです。</p></article>
+        <article class="card"><h3>医師・看護師が対応する方針</h3><p>公式サイトでは、カウンセリングから契約・施術まで医師・看護師が対応し、無理な勧誘をしない方針が記載されています。</p></article>
+        <article class="card"><h3>駅から徒歩圏</h3><p>銀座駅・東銀座駅・銀座一丁目駅などから徒歩圏で、銀座周辺から通いやすい立地です。</p></article>
+      </div>
+    </section>
+
+    <section class="panel section" id="consultation">
+      <p class="section-label">相談できる内容</p>
+      <h2>医療脱毛から肌悩みまで、公式情報を確認しながら検討できます。</h2>
+      <ul class="item-list">
+        <li>医療脱毛</li>
+        <li>ヒゲ脱毛</li>
+        <li>男性VIO脱毛</li>
+        <li>全身脱毛</li>
+        <li>ニキビ・ニキビ跡</li>
+        <li>しみ・ほくろ</li>
+        <li>たるみ</li>
+        <li>美肌相談</li>
+        <li>ダイエット薬などは公式情報を確認のうえ相談</li>
+      </ul>
+    </section>
+
+    <section class="panel section">
+      <p class="section-label">基本情報</p>
+      <h2>メディエス銀座クリニック</h2>
+      <div class="meta" aria-label="基本情報">
+        <div class="meta-row"><span class="meta-label">担当</span><span class="meta-value">西川 秀人<br>CEO・理事</span></div>
+        <div class="meta-row"><span class="meta-label">分類</span><span class="meta-value">美容皮膚科・美容外科・医療脱毛</span></div>
+        <div class="meta-row"><span class="meta-label">所在地</span><span class="meta-value">〒104-0061<br>東京都中央区銀座3-9-19 吉澤ビル6F</span></div>
+        <div class="meta-row"><span class="meta-label">公式サイト</span><span class="meta-value"><a href="https://www.medieth.com/" target="_blank" rel="noopener noreferrer">https://www.medieth.com</a></span></div>
+        <div class="meta-row"><span class="meta-label">電話</span><span class="meta-value">03-6452-9733<br>名刺記載・要確認</span></div>
+        <div class="meta-row"><span class="meta-label">備考</span><span class="meta-value">予約・最新情報は公式サイトをご確認ください</span></div>
+      </div>
+      <p class="note">電話番号は名刺記載情報です。ネット上の医療機関情報では別番号も確認できるため、予約・最新情報は公式サイトをご確認ください。</p>
+    </section>
+
+    <section class="panel cta">
+      <p class="section-label">相談導線</p>
+      <h2>脱毛や美容医療は、事前確認が大切です。</h2>
+      <p>
+        料金、通いやすさ、施術内容、リスクや副作用、肌質への適応などを事前に確認することで、不安を減らして検討しやすくなります。
+        気になる方は、まず公式情報を確認してください。
+      </p>
+      <div class="cta-actions">
+        <a class="button" href="https://www.medieth.com/" target="_blank" rel="noopener noreferrer">公式サイトを見る</a>
+        <a class="button secondary" href="https://www.medieth.com/" target="_blank" rel="noopener noreferrer">美容脱毛について相談する</a>
+        <a class="button soft" href="../member.html">栄一に相談する</a>
+      </div>
+      <p class="note">掲載内容は紹介情報です。治療内容・料金・リスク・副作用・適応については、必ず公式サイトまたはクリニックへ直接ご確認ください。</p>
+    </section>
+  </main>
+</body>
 </html>
