@@ -16,8 +16,22 @@ const types = {
 
 http
   .createServer((req, res) => {
-    let pathname = decodeURIComponent(req.url.split("?")[0]);
-    if (pathname === "/") pathname = "/index.html";
+    let pathname;
+    try {
+      pathname = decodeURIComponent(req.url.split("?")[0]);
+    } catch (error) {
+      res.writeHead(400);
+      res.end("Bad request");
+      return;
+    }
+
+    if (pathname.includes("..")) {
+      res.writeHead(403);
+      res.end("Forbidden");
+      return;
+    }
+
+    if (pathname.endsWith("/")) pathname += "index.html";
 
     const file = path.normalize(path.join(root, pathname));
     if (!file.startsWith(root)) {
