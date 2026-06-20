@@ -203,15 +203,24 @@ a {
   align-items: stretch;
 }
 
+.anchor-nav,
 .performance-anchor-nav {
   display: flex;
   gap: 12px;
   overflow-x: auto;
-  padding-top: 24px;
-  padding-bottom: 0;
   scroll-snap-type: x proximity;
 }
 
+.performance-anchor-nav {
+  padding-top: 24px;
+  padding-bottom: 0;
+}
+
+.news-anchor-nav {
+  margin-bottom: 24px;
+}
+
+.anchor-nav a,
 .performance-anchor-nav a {
   flex: 0 0 auto;
   min-height: 44px;
@@ -226,6 +235,7 @@ a {
   scroll-snap-align: start;
 }
 
+.anchor-nav a:hover,
 .performance-anchor-nav a:hover {
   border-color: var(--color-gold);
 }
@@ -236,6 +246,14 @@ a {
 
 .notice-card {
   padding: clamp(24px, 4vw, 34px);
+  scroll-margin-top: 96px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.notice-card:target {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(248, 247, 243, 0.96));
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(184, 148, 71, 0.20), 0 22px 58px rgba(16, 19, 26, 0.16);
 }
 
 .performance-card {
