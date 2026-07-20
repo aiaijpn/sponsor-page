@@ -216,6 +216,43 @@ a {
   padding-bottom: 0;
 }
 
+.schedule-view-nav {
+  display: flex;
+  gap: 12px;
+  padding-top: 24px;
+  padding-bottom: 0;
+}
+
+.schedule-view-nav a {
+  min-height: 44px;
+  padding: 10px 14px;
+  color: var(--color-navy);
+  font-weight: 700;
+  text-decoration: none;
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+}
+
+.schedule-view-nav a[aria-current="page"] {
+  color: var(--color-white);
+  background: var(--color-navy);
+  border-color: var(--color-gold);
+}
+
+.legacy-anchor-notice {
+  display: none;
+  scroll-margin-top: 96px;
+}
+
+.legacy-anchor-notice:target {
+  display: block;
+  padding: 16px;
+  background: var(--color-white);
+  border: 1px solid var(--color-gold);
+  border-radius: 8px;
+}
+
 .news-anchor-nav {
   margin-bottom: 24px;
 }
@@ -524,5 +561,9 @@ a {
   .performance-card,
   .profile-card {
     padding: 22px;
+  }
+
+  .schedule-view-nav {
+    flex-wrap: wrap;
   }
 }
